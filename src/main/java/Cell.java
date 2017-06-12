@@ -9,4 +9,12 @@ public class Cell {
         this.column = column;
         this.content = Seed.EMPTY;
     }
+
+    public Integer getRow() {
+        return this.row;
+    }
+
+    public Integer getColumn() {
+        return this.column;
+    }
 }
