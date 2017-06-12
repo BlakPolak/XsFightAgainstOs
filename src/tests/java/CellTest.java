@@ -18,7 +18,7 @@ class CellTest {
 
     @Test
     @DisplayName("Check if Cell constructor initialized proper column")
-    void testIfCellConstructorInitializedProperly() {
+    void testIfCellConstructorInitializeProperlyColumn() {
         Integer testRow = 1;
         Integer testColumn = 3;
         Cell cell = new Cell(testRow, testColumn);
