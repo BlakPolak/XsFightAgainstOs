@@ -17,4 +17,12 @@ public class Cell {
     public Integer getColumn() {
         return this.column;
     }
+
+    public Seed getContent() {
+        return this.content;
+    }
+
+    public void setContent(Seed) {
+        this.content = Seed;
+    }
 }
