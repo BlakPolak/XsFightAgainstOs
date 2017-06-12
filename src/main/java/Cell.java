@@ -30,6 +30,7 @@ public class Cell {
         this.content = Seed.EMPTY;
     }
 
+    //Todo: remove setters: row & column
     public void setRow(Integer row) {
         this.row = row;
     }
