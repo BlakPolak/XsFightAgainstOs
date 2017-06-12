@@ -22,8 +22,8 @@ public class Cell {
         return this.content;
     }
 
-    public void setContent(Seed) {
-        this.content = Seed;
+    public void setContent(Seed seed) {
+        this.content = seed;
     }
 
     public void clear() {
