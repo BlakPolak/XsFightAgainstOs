@@ -1,7 +1,7 @@
 
 public class Cell {
-    private final Integer row;
-    private final Integer column;
+    private Integer row;
+    private Integer column;
     private Seed content;
 
     public Cell(Integer row, Integer column) {
@@ -28,5 +28,13 @@ public class Cell {
 
     public void clear() {
         this.content = Seed.EMPTY;
+    }
+
+    public void setRow(Integer row) {
+        this.row = row;
+    }
+
+    public void setColumn(Integer column) {
+        this.column = column;
     }
 }
