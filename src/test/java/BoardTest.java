@@ -7,6 +7,8 @@ import java.lang.reflect.Array;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BoardTest {
 
@@ -61,6 +63,19 @@ public class BoardTest {
                 () -> assertEquals(expectedRowIs2, testBoard.getCells()[1][1].getRow(), "Test for second row"),
                 () -> assertEquals(expectedRowIs1, testBoard.getCells()[2][0].getColumn(), "Test for first row"),
                 () -> assertEquals(expectedColumnIs3, testBoard.getCells()[2][2].getColumn(), "Test for third column"));
+        }
+
+        @Nested
+        class BoardHasWonTest {
+
+            Board testBoard;
+
+            @BeforeEach
+            void setup() {
+                testBoard = new Board();
+                testBoard.init();
+            }
+
         }
     }
 }
