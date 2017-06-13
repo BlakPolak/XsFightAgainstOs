@@ -76,6 +76,29 @@ public class BoardTest {
                 testBoard.init();
             }
 
+            @Test
+            @DisplayName("Chosen cell is occupied")
+            void testIfChosenCellIsOccupied() {
+                Integer chosenRow = 2;
+                Integer chosenCol = 2;
+                Integer rowToSetCross = 2;
+                Integer colToSetCross = 2;
+                setCellInBoardToCross(rowToSetCross, colToSetCross);
+                Boolean isCellOccupied = testBoard.isCellOccupied(chosenRow, chosenCol);
+                assertTrue(isCellOccupied);
+            }
+
+            @Test
+            @DisplayName("Chosen cell is not occupied")
+            void testIfChosenCellIsNotOccupied() {
+                Integer chosenRow = 1;
+                Integer chosenCol = 1;
+                Integer rowToSetCross = 2;
+                Integer colToSetCross = 2;
+                setCellInBoardToCross(rowToSetCross, colToSetCross);
+                Boolean isCellOccupied = testBoard.isCellOccupied(chosenRow, chosenCol);
+                assertFalse(isCellOccupied);
+            }
         }
     }
 }
