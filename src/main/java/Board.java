@@ -10,4 +10,8 @@ public class Board {
             }
         }
     }
+
+    public Cell[][] getCells() {
+        return cells;
+    }
 }
