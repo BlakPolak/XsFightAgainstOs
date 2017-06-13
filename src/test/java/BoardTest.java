@@ -137,7 +137,7 @@ public class BoardTest {
             @ParameterizedTest
             @MethodSource(names = "setUserChoices")
             @DisplayName("Check hasWon() when user should win with seeds horizontal configuration")
-            void testUserWinInSeedsInRow(Integer row) {
+            void testUserWinIfSeedsInRow(Integer row) {
                 Integer firstCol = 0;
                 Integer secondCol = 1;
                 setCellInBoardToCross(row, firstCol);
