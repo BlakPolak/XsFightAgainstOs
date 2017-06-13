@@ -185,6 +185,18 @@ public class BoardTest {
                 assertTrue(hasWon);
             }
 
+            @ParameterizedTest
+            @MethodSource(names = "setColumnToCheck")
+            @DisplayName("Check hasWon() when user should not win with only 2 seeds in column")
+            void testUserDoesNotWinIfOnlyTwoSeedsInColumn(Integer col) {
+                Integer firstRow = 0;
+                setCellInBoardToCross(firstRow, col);
+                Integer userChoice = 1;
+                Seed seed = Seed.CROSS;
+                Boolean hasWon = testBoard.hasWon(seed, userChoice, col);
+                assertFalse(hasWon);
+            }
+
             private void setCellInBoardToCross(Integer row, Integer col) {
                 Cell[][] cells = testBoard.getCells();
                 Cell oneCell = cells[row][col];
