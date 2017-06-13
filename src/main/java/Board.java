@@ -17,11 +17,13 @@ public class Board {
     }
 
     public Boolean isCellOccupied(Integer chosenRow, Integer chosenCol) {
-        return null;
+        Cell cell = this.cells[chosenRow][chosenCol];
+        Seed cellContent = cell.getContent();
+        return cellContent != Seed.EMPTY;
     }
 
     public Boolean isOnBoard(Integer chosenRow, Integer chosenCol) {
-        return null;
+        return chosenCol >= 0 & chosenRow <= 3 & chosenCol >= 0 & chosenCol <= 3;
     }
 
     public Boolean hasWon(Seed seed, Integer row, Integer userChoice) {
