@@ -134,6 +134,20 @@ public class BoardTest {
                 );
             }
 
+            @ParameterizedTest
+            @MethodSource(names = "setUserChoices")
+            @DisplayName("Check hasWon() when user should win with seeds horizontal configuration")
+            void testUserWinInSeedsInRow(Integer row) {
+                Integer firstCol = 0;
+                Integer secondCol = 1;
+                setCellInBoardToCross(row, firstCol);
+                setCellInBoardToCross(row, secondCol);
+                Integer userChoice = 2;
+                Seed seed = Seed.CROSS;
+                Boolean hasWon = testBoard.hasWon(seed, row, userChoice);
+                assertTrue(hasWon);
+            }
+
             private void setCellInBoardToCross(Integer row, Integer col) {
                 Cell[][] cells = testBoard.getCells();
                 Cell oneCell = cells[row][col];
