@@ -23,14 +23,14 @@ public class Board {
     }
 
     public Boolean isOnBoard(Integer chosenRow, Integer chosenCol) {
-        return chosenCol >= 0 & chosenRow <= 3 & chosenCol >= 0 & chosenCol <= 3;
+        return chosenCol >= 0 & chosenRow <= 2 & chosenCol >= 0 & chosenCol <= 2;
     }
 
-    public Boolean hasWon(Seed seed, Integer row, Integer userChoice) {
-        return null;
-    }
-
-    public Boolean isDraw() {
-        return draw;
+    public Boolean hasWon(Seed seed, Integer row, Integer column) {
+        if (this.isCellOccupied(row, column) || !this.isOnBoard(row, column)) {
+            throw new IllegalArgumentException();
+        }
+        setCell(seed, row, column);
+        return isWonHorizontally() & isWonVertically() & isWonByTheSlant();
     }
 }
