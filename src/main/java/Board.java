@@ -2,6 +2,10 @@
 public class Board {
     private Cell[][] cells;
 
+    public Board(){
+        init();
+    }
+
     public void init() {
         cells = new Cell[3][3];
         for (int row = 0; row < 3; row++) {
@@ -13,5 +17,9 @@ public class Board {
 
     public Cell[][] getCells() {
         return cells;
+    }
+
+    public void setCell(Seed player, Integer row, Integer column) {
+        cells[row][column].setContent(player);
     }
 }
