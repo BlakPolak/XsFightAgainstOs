@@ -48,18 +48,20 @@ public class GameTest {
         @Test
         @DisplayName("Check if randomPlayer() return player")
         void testIfRandomPlayerMethodReturnPlayer() {
-            assertEquals(Seed.class, testGame.getRandomPlayer());
+            assertEquals(Seed.class, testGame.getRandomPlayer().getClass());
         }
 
         @Nested
         class UpdateState{
-
+            Game testGame;
             Seed testSeed;
             Integer testRow;
             Integer testColumn;
 
             @BeforeEach
             void setUp() {
+                testGame = new Game();
+                testGame.initGame();
                 testSeed = Seed.CROSS;
                 testRow = 1;
                 testColumn = 2;
