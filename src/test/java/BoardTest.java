@@ -210,9 +210,9 @@ public class BoardTest {
             @MethodSource(names = "setColumnInFirstAndLastRow")
             @DisplayName("Win if user have seeds by the slant")
             void testWinIfUserHaveSeedsByTheSlant(Integer colInFirstRow, Integer colInThirdRow) {
+                Integer crossInCenter = 1;
                 setCellInBoardToCross(FIRST_ROW, colInFirstRow);
                 setCellInBoardToCross(THIRD_ROW, colInThirdRow);
-                Integer crossInCenter = 1;
                 Seed seed = Seed.CROSS;
                 Boolean hasWon = testBoard.hasWon(seed, crossInCenter, crossInCenter);
                 assertTrue(hasWon);
