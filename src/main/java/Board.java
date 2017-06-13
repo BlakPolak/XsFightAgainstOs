@@ -48,4 +48,26 @@ public class Board {
     private void setCell(Seed seed, Integer row, Integer column) {
         this.cells[row][column].setContent(seed);
     }
+
+    private Boolean isWonHorizontally(Seed seed) {
+        for (Cell[] row: this.cells) {
+            if ((row[0].getContent() == seed)
+                    && (row[1].getContent() == seed)
+                    && (row[2].getContent() == seed)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Boolean isWonVertically(Seed seed) {
+        for (int column = 0; column < 3; column++) {
+            if ((this.cells[0][column].getContent() == seed)
+                    && (this.cells[1][column].getContent() == seed)
+                    && (this.cells[2][column].getContent() == seed)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
