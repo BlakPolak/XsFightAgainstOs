@@ -25,7 +25,7 @@ public class BoardTest {
     }
 
     @Nested
-    class BoardInitialized {
+    static class BoardInitialized {
 
         Board testBoard;
 
@@ -71,13 +71,13 @@ public class BoardTest {
         }
 
         @Nested
-        class BoardHasWonTest {
-            final Integer FIRST_ROW = 0;
-            final Integer SECOND_ROW = 1;
-            final Integer THIRD_ROW = 2;
-            final Integer FIRST_COLUMN = 0;
-            final Integer SECOND_COLUMN = 1;
-            final Integer THIRD_COLUMN = 2;
+        static class BoardHasWonTest {
+            static final Integer FIRST_ROW = 0;
+            static final Integer SECOND_ROW = 1;
+            static final Integer THIRD_ROW = 2;
+            static final Integer FIRST_COLUMN = 0;
+            static final Integer SECOND_COLUMN = 1;
+            static final Integer THIRD_COLUMN = 2;
 
             Board testBoard;
 
@@ -129,7 +129,7 @@ public class BoardTest {
                 assertTrue(isCellOnBoard);
             }
 
-            private Stream<Arguments> setRowToCheck() {
+            static Stream<Arguments> setRowToCheck() {
                 Integer firstRow = 0;
                 Integer secondRow = 1;
                 Integer thirdRow = 2;
@@ -165,7 +165,7 @@ public class BoardTest {
                 assertFalse(hasWon);
             }
 
-            private Stream<Arguments> setColumnToCheck() {
+            static Stream<Arguments> setColumnToCheck() {
                 return Stream.of(
                 ObjectArrayArguments.create(FIRST_COLUMN),
                 ObjectArrayArguments.create(SECOND_COLUMN),
@@ -197,7 +197,7 @@ public class BoardTest {
                 assertFalse(hasWon);
             }
 
-            private Stream<Arguments> setColumnInFirstAndLastRow() {
+            static Stream<Arguments> setColumnInFirstAndLastRow() {
                 Integer firstCol = 0;
                 Integer thirdCol = 2;
                 return Stream.of(
@@ -228,6 +228,7 @@ public class BoardTest {
             @Test
             @DisplayName("Check if isDraw() returns true if moves are impossible")
             void testIsDrawReturnsTrueIfMovesAreImpossible() {
+                setAllCellsInBoardToCross();
                 Boolean isDraw = testBoard.isDraw();
                 assertTrue(isDraw);
             }
@@ -236,6 +237,14 @@ public class BoardTest {
                 Cell[][] cells = testBoard.getCells();
                 Cell oneCell = cells[row][col];
                 oneCell.setContent(Seed.CROSS);
+            }
+
+            private void setAllCellsInBoardToCross() {
+                for (int row = 0; row < 3; row++) {
+                    for (int col = 0; col < 3; col++) {
+                        setCellInBoardToCross(row, col);
+                    }
+                }
             }
         }
     }
