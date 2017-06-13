@@ -44,4 +44,8 @@ public class Board {
         }
         return true;
     }
+
+    private void setCell(Seed seed, Integer row, Integer column) {
+        this.cells[row][column].setContent(seed);
+    }
 }
