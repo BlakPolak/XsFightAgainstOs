@@ -72,6 +72,12 @@ public class BoardTest {
 
         @Nested
         class BoardHasWonTest {
+            final Integer FIRST_ROW = 0;
+            final Integer SECOND_ROW = 1;
+            final Integer THIRD_ROW = 2;
+            final Integer FIRST_COLUMN = 0;
+            final Integer SECOND_COLUMN = 1;
+            final Integer THIRD_COLUMN = 2;
 
             Board testBoard;
 
@@ -152,8 +158,7 @@ public class BoardTest {
             @MethodSource(names = "setRowToCheck")
             @DisplayName("Check hasWon() when user should not win with 2 seeds in one row")
             void testUserDoesNotWinIfOnlyTwoSeedsInRow(Integer row) {
-                Integer firstCol = 0;
-                setCellInBoardToCross(row, firstCol);
+                setCellInBoardToCross(row, FIRST_COLUMN);
                 Integer userChoice = 2;
                 Seed seed = Seed.CROSS;
                 Boolean hasWon = testBoard.hasWon(seed, row, userChoice);
@@ -161,13 +166,10 @@ public class BoardTest {
             }
 
             private Stream<Arguments> setColumnToCheck() {
-                Integer firstCol = 0;
-                Integer secondCol = 1;
-                Integer thirdCol = 2;
                 return Stream.of(
-                ObjectArrayArguments.create(firstCol),
-                ObjectArrayArguments.create(secondCol),
-                ObjectArrayArguments.create(thirdCol)
+                ObjectArrayArguments.create(FIRST_COLUMN),
+                ObjectArrayArguments.create(SECOND_COLUMN),
+                ObjectArrayArguments.create(THIRD_COLUMN)
                 );
             }
 
@@ -175,10 +177,8 @@ public class BoardTest {
             @MethodSource(names = "setColumnToCheck")
             @DisplayName("Check hasWon() when user should win with seeds Vertical configuration")
             void testUserWinIfSeedsInColumn(Integer col) {
-                Integer firstRow = 0;
-                Integer thirdRow = 2;
-                setCellInBoardToCross(firstRow, col);
-                setCellInBoardToCross(thirdRow, col);
+                setCellInBoardToCross(FIRST_ROW, col);
+                setCellInBoardToCross(THIRD_ROW, col);
                 Integer userChoice = 1;
                 Seed seed = Seed.CROSS;
                 Boolean hasWon = testBoard.hasWon(seed, userChoice, col);
