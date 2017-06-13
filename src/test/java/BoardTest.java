@@ -2,8 +2,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ObjectArrayArguments;
 
 import java.lang.reflect.Array;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -67,6 +72,12 @@ public class BoardTest {
 
         @Nested
         class BoardHasWonTest {
+            final Integer FIRST_ROW = 0;
+            final Integer SECOND_ROW = 1;
+            final Integer THIRD_ROW = 2;
+            final Integer FIRST_COLUMN = 0;
+            final Integer SECOND_COLUMN = 1;
+            final Integer THIRD_COLUMN = 2;
 
             Board testBoard;
 
@@ -116,6 +127,109 @@ public class BoardTest {
                 Integer chosenCol = 1;
                 Boolean isCellOnBoard = testBoard.isOnBoard(chosenRow, chosenCol);
                 assertTrue(isCellOnBoard);
+            }
+
+            private Stream<Arguments> setRowToCheck() {
+                Integer firstRow = 0;
+                Integer secondRow = 1;
+                Integer thirdRow = 2;
+                return Stream.of(
+                ObjectArrayArguments.create(firstRow),
+                ObjectArrayArguments.create(secondRow),
+                ObjectArrayArguments.create(thirdRow)
+                );
+            }
+
+            @ParameterizedTest
+            @MethodSource(names = "setRowToCheck")
+            @DisplayName("Check hasWon() when user should win with seeds horizontal configuration")
+            void testUserWinIfSeedsInRow(Integer row) {
+                Integer firstCol = 0;
+                Integer secondCol = 1;
+                setCellInBoardToCross(row, firstCol);
+                setCellInBoardToCross(row, secondCol);
+                Integer userChoice = 2;
+                Seed seed = Seed.CROSS;
+                Boolean hasWon = testBoard.hasWon(seed, row, userChoice);
+                assertTrue(hasWon);
+            }
+
+            @ParameterizedTest
+            @MethodSource(names = "setRowToCheck")
+            @DisplayName("Check hasWon() when user should not win with 2 seeds in one row")
+            void testUserDoesNotWinIfOnlyTwoSeedsInRow(Integer row) {
+                setCellInBoardToCross(row, FIRST_COLUMN);
+                Integer userChoice = 2;
+                Seed seed = Seed.CROSS;
+                Boolean hasWon = testBoard.hasWon(seed, row, userChoice);
+                assertFalse(hasWon);
+            }
+
+            private Stream<Arguments> setColumnToCheck() {
+                return Stream.of(
+                ObjectArrayArguments.create(FIRST_COLUMN),
+                ObjectArrayArguments.create(SECOND_COLUMN),
+                ObjectArrayArguments.create(THIRD_COLUMN)
+                );
+            }
+
+            @ParameterizedTest
+            @MethodSource(names = "setColumnToCheck")
+            @DisplayName("Check hasWon() when user should win with seeds Vertical configuration")
+            void testUserWinIfSeedsInColumn(Integer col) {
+                setCellInBoardToCross(FIRST_ROW, col);
+                setCellInBoardToCross(THIRD_ROW, col);
+                Integer userChoice = 1;
+                Seed seed = Seed.CROSS;
+                Boolean hasWon = testBoard.hasWon(seed, userChoice, col);
+                assertTrue(hasWon);
+            }
+
+            @ParameterizedTest
+            @MethodSource(names = "setColumnToCheck")
+            @DisplayName("Check hasWon() when user should not win with only 2 seeds in column")
+            void testUserDoesNotWinIfOnlyTwoSeedsInColumn(Integer col) {
+                Integer firstRow = 0;
+                setCellInBoardToCross(firstRow, col);
+                Integer userChoice = 1;
+                Seed seed = Seed.CROSS;
+                Boolean hasWon = testBoard.hasWon(seed, userChoice, col);
+                assertFalse(hasWon);
+            }
+
+            private Stream<Arguments> setColumnInFirstAndLastRow() {
+                Integer firstCol = 0;
+                Integer thirdCol = 2;
+                return Stream.of(
+                ObjectArrayArguments.create(firstCol, thirdCol),
+                ObjectArrayArguments.create(thirdCol, firstCol)
+                );
+            }
+
+            @ParameterizedTest
+            @MethodSource(names = "setColumnInFirstAndLastRow")
+            @DisplayName("Win if user have seeds by the slant")
+            void testWinIfUserHaveSeedsByTheSlant(Integer colInFirstRow, Integer colInThirdRow) {
+                Integer crossInCenter = 1;
+                setCellInBoardToCross(FIRST_ROW, colInFirstRow);
+                setCellInBoardToCross(THIRD_ROW, colInThirdRow);
+                Seed seed = Seed.CROSS;
+                Boolean hasWon = testBoard.hasWon(seed, crossInCenter, crossInCenter);
+                assertTrue(hasWon);
+            }
+
+            @Test
+            @DisplayName("Check if isDraw() returns false if moves are possible")
+            void testIsDrawReturnsFalseIfMovesArePossible() {
+                Boolean isDraw = testBoard.isDraw();
+                assertFalse(isDraw);
+            }
+
+            @Test
+            @DisplayName("Check if isDraw() returns true if moves are impossible")
+            void testIsDrawReturnsTrueIfMovesAreImpossible() {
+                Boolean isDraw = testBoard.isDraw();
+                assertTrue(isDraw);
             }
 
             private void setCellInBoardToCross(Integer row, Integer col) {
