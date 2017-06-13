@@ -135,7 +135,7 @@ public class BoardTest {
             }
 
             @ParameterizedTest
-            @MethodSource(names = "setUserChoices")
+            @MethodSource(names = "setRowToCheck")
             @DisplayName("Check hasWon() when user should win with seeds horizontal configuration")
             void testUserWinIfSeedsInRow(Integer row) {
                 Integer firstCol = 0;
@@ -149,7 +149,7 @@ public class BoardTest {
             }
 
             @ParameterizedTest
-            @MethodSource(names = "setUserChoices")
+            @MethodSource(names = "setRowToCheck")
             @DisplayName("Check hasWon() when user should not win with 2 seeds in one row")
             void testUserDoesNotWinIfOnlyTwoSeedsInRow(Integer row) {
                 Integer firstCol = 0;
