@@ -148,6 +148,18 @@ public class BoardTest {
                 assertTrue(hasWon);
             }
 
+            @ParameterizedTest
+            @MethodSource(names = "setUserChoices")
+            @DisplayName("Check hasWon() when user should not win with 2 seeds in one row")
+            void testUserDoesNotWinIfOnlyTwoSeedsInRow(Integer row) {
+                Integer firstCol = 0;
+                setCellInBoardToCross(row, firstCol);
+                Integer userChoice = 2;
+                Seed seed = Seed.CROSS;
+                Boolean hasWon = testBoard.hasWon(seed, row, userChoice);
+                assertFalse(hasWon);
+            }
+
             private void setCellInBoardToCross(Integer row, Integer col) {
                 Cell[][] cells = testBoard.getCells();
                 Cell oneCell = cells[row][col];
