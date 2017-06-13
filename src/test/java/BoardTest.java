@@ -100,6 +100,24 @@ public class BoardTest {
                 assertFalse(isCellOccupied);
             }
 
+            @Test
+            @DisplayName("Chosen cell is not on board")
+            void testIfChosenCellIsNotOnBoard() {
+                Integer chosenRow = 5;
+                Integer chosenCol = -1;
+                Boolean isCellOnBoard = testBoard.isOnBoard(chosenRow, chosenCol);
+                assertFalse(isCellOnBoard);
+            }
+
+            @Test
+            @DisplayName("Chosen cell is on board")
+            void testIfChosenCellIsOnBoard() {
+                Integer chosenRow = 1;
+                Integer chosenCol = 1;
+                Boolean isCellOnBoard = testBoard.isOnBoard(chosenRow, chosenCol);
+                assertTrue(isCellOnBoard);
+            }
+
             private void setCellInBoardToCross(Integer row, Integer col) {
                 Cell[][] cells = testBoard.getCells();
                 Cell oneCell = cells[row][col];
