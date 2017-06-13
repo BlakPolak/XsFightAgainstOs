@@ -206,6 +206,18 @@ public class BoardTest {
                 );
             }
 
+            @ParameterizedTest
+            @MethodSource(names = "setColumnInFirstAndLastRow")
+            @DisplayName("Win if user have seeds by the slant")
+            void testWinIfUserHaveSeedsByTheSlant(Integer colInFirstRow, Integer colInThirdRow) {
+                setCellInBoardToCross(FIRST_ROW, colInFirstRow);
+                setCellInBoardToCross(THIRD_ROW, colInThirdRow);
+                Integer crossInCenter = 1;
+                Seed seed = Seed.CROSS;
+                Boolean hasWon = testBoard.hasWon(seed, crossInCenter, crossInCenter);
+                assertTrue(hasWon);
+            }
+
             private void setCellInBoardToCross(Integer row, Integer col) {
                 Cell[][] cells = testBoard.getCells();
                 Cell oneCell = cells[row][col];
