@@ -225,6 +225,13 @@ public class BoardTest {
                 assertFalse(isDraw);
             }
 
+            @Test
+            @DisplayName("Check if isDraw() returns true if moves are impossible")
+            void testIsDrawReturnsTrueIfMovesAreImpossible() {
+                Boolean isDraw = testBoard.isDraw();
+                assertTrue(isDraw);
+            }
+
             private void setCellInBoardToCross(Integer row, Integer col) {
                 Cell[][] cells = testBoard.getCells();
                 Cell oneCell = cells[row][col];
