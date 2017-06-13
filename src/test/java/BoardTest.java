@@ -2,8 +2,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ObjectArrayArguments;
 
 import java.lang.reflect.Array;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -116,6 +121,17 @@ public class BoardTest {
                 Integer chosenCol = 1;
                 Boolean isCellOnBoard = testBoard.isOnBoard(chosenRow, chosenCol);
                 assertTrue(isCellOnBoard);
+            }
+
+            private Stream<Arguments> setRowToCheck() {
+                Integer firstRow = 0;
+                Integer secondRow = 1;
+                Integer thirdRow = 2;
+                return Stream.of(
+                ObjectArrayArguments.create(firstRow),
+                ObjectArrayArguments.create(secondRow),
+                ObjectArrayArguments.create(thirdRow)
+                );
             }
 
             private void setCellInBoardToCross(Integer row, Integer col) {
