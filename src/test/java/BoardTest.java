@@ -160,6 +160,17 @@ public class BoardTest {
                 assertFalse(hasWon);
             }
 
+            private Stream<Arguments> setColumnToCheck() {
+                Integer firstCol = 0;
+                Integer secondCol = 1;
+                Integer thirdCol = 2;
+                return Stream.of(
+                ObjectArrayArguments.create(firstCol),
+                ObjectArrayArguments.create(secondCol),
+                ObjectArrayArguments.create(thirdCol)
+                );
+            }
+
             private void setCellInBoardToCross(Integer row, Integer col) {
                 Cell[][] cells = testBoard.getCells();
                 Cell oneCell = cells[row][col];
