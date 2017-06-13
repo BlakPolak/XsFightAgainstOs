@@ -171,6 +171,20 @@ public class BoardTest {
                 );
             }
 
+            @ParameterizedTest
+            @MethodSource(names = "setColumnToCheck")
+            @DisplayName("Check hasWon() when user should win with seeds Vertical configuration")
+            void testUserWinIfSeedsInColumn(Integer col) {
+                Integer firstRow = 0;
+                Integer thirdRow = 2;
+                setCellInBoardToCross(firstRow, col);
+                setCellInBoardToCross(thirdRow, col);
+                Integer userChoice = 1;
+                Seed seed = Seed.CROSS;
+                Boolean hasWon = testBoard.hasWon(seed, userChoice, col);
+                assertTrue(hasWon);
+            }
+
             private void setCellInBoardToCross(Integer row, Integer col) {
                 Cell[][] cells = testBoard.getCells();
                 Cell oneCell = cells[row][col];
