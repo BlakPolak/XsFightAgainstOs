@@ -1,6 +1,7 @@
 
 public class Board {
     private Cell[][] cells;
+    private boolean draw;
 
     public void init() {
         cells = new Cell[3][3];
@@ -13,5 +14,21 @@ public class Board {
 
     public Cell[][] getCells() {
         return cells;
+    }
+
+    public Boolean isCellOccupied(Integer chosenRow, Integer chosenCol) {
+        return null;
+    }
+
+    public Boolean isOnBoard(Integer chosenRow, Integer chosenCol) {
+        return null;
+    }
+
+    public Boolean hasWon(Seed seed, Integer row, Integer userChoice) {
+        return null;
+    }
+
+    public Boolean isDraw() {
+        return draw;
     }
 }
