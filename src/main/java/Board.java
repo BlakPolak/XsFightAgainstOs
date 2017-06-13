@@ -33,4 +33,15 @@ public class Board {
         setCell(seed, row, column);
         return isWonHorizontally() & isWonVertically() & isWonByTheSlant();
     }
+
+    public Boolean isDraw() {
+        for (Cell[] row : this.cells) {
+            for (Cell cellInRow : row) {
+                if (cellInRow.getContent() == Seed.EMPTY) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
