@@ -3,6 +3,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
+
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,25 +31,22 @@ public class BoardTest {
         @DisplayName("Check if Board initialized proper size board")
         void testIfBoardInitializedRightBoardSize() {
             testBoard.init();
-            Integer expectedCellLength = 3;
-            assertEquals(expectedCellLength, testBoard.getCells().length);
+            Integer expectedRowCount = 3;
+            Integer expectedColumnCount = 3;
+            Integer testRowCount = Array.getLength(testBoard.getCells());
+            Integer testColCount = Array.getLength(testBoard.getCells()[0]);
+            assertAll("Check 3x3 board",
+                () -> assertEquals(expectedRowCount, testRowCount, "Test row count"),
+                () -> assertEquals(expectedColumnCount, testColCount, "Test column count")
+            );
         }
 
         @Test
         @DisplayName("Check if initialized Board has empty cell")
         void testIfBoardCreatesEmptyBoard() {
             testBoard.init();
-            Integer testRow = 2;
-            Integer testColumn = 3;
-            assertEquals(Seed.EMPTY, testBoard.getCells()[testRow][testColumn].getContent());
-        }
-
-        @Test
-        @DisplayName("Check if initialized Board has empty cell")
-        void testIfBoardCreatesEmptyBoard() {
-            testBoard.init();
-            Integer testRow = 2;
-            Integer testColumn = 3;
+            Integer testRow = 1;
+            Integer testColumn = 2;
             assertEquals(Seed.EMPTY, testBoard.getCells()[testRow][testColumn].getContent());
         }
 
@@ -55,9 +54,9 @@ public class BoardTest {
         @DisplayName("Check that the Board correctly refers to cells")
         void testIfBoardRefersToCells() {
             testBoard.init();
-            Integer expectedRowIs1 = 1;
-            Integer expectedRowIs2 = 2;
-            Integer expectedColumnIs3 = 3;
+            Integer expectedRowIs1 = 0;
+            Integer expectedRowIs2 = 1;
+            Integer expectedColumnIs3 = 2;
             assertAll("Check 3 cells",
                 () -> assertEquals(expectedRowIs2, testBoard.getCells()[1][1].getRow(), "Test for second row"),
                 () -> assertEquals(expectedRowIs1, testBoard.getCells()[2][0].getColumn(), "Test for first row"),
