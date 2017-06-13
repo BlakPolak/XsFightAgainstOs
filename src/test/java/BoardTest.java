@@ -99,6 +99,12 @@ public class BoardTest {
                 Boolean isCellOccupied = testBoard.isCellOccupied(chosenRow, chosenCol);
                 assertFalse(isCellOccupied);
             }
+
+            private void setCellInBoardToCross(Integer row, Integer col) {
+                Cell[][] cells = testBoard.getCells();
+                Cell oneCell = cells[row][col];
+                oneCell.setContent(Seed.CROSS);
+            }
         }
     }
 }
