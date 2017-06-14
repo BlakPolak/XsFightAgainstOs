@@ -25,7 +25,7 @@ public class Board {
         return cellContent != Seed.EMPTY;
     }
 
-    public Boolean isOnBoard(Integer chosenRow, Integer chosenCol) {
+    private Boolean isOnBoard(Integer chosenRow, Integer chosenCol) {
         return chosenCol >= 0 & chosenRow <= 2 & chosenCol >= 0 & chosenCol <= 2;
     }
 
