@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BoardTest {
@@ -112,21 +113,26 @@ public class BoardTest {
             }
 
             @Test
-            @DisplayName("Chosen cell is not on board")
-            void testIfChosenCellIsNotOnBoard() {
+            @DisplayName("IllegalArgumentException When chosen cell isn't on board")
+            void testIllegalArgumentExceptionWhenChosenCellIsNotOnBoard() {
+                Seed seed = Seed.CROSS;
                 Integer chosenRow = 5;
                 Integer chosenCol = -1;
-                Boolean isCellOnBoard = testBoard.isOnBoard(chosenRow, chosenCol);
-                assertFalse(isCellOnBoard);
+                assertThrows(IllegalArgumentException.class, () -> {
+                    testBoard.hasWon(seed, chosenRow, chosenCol);
+                });
             }
 
             @Test
-            @DisplayName("Chosen cell is on board")
-            void testIfChosenCellIsOnBoard() {
+            @DisplayName("Seed is set on board in selected cell")
+            void testIfSeedIsSetOnBoardInSelectedCell() {
+                Seed seed = Seed.CROSS;
                 Integer chosenRow = 1;
                 Integer chosenCol = 1;
-                Boolean isCellOnBoard = testBoard.isOnBoard(chosenRow, chosenCol);
-                assertTrue(isCellOnBoard);
+                testBoard.hasWon(seed, chosenRow, chosenCol);
+                Seed expectedSeed = Seed.CROSS;
+                Seed actualSeed = testBoard.getCells()[chosenRow][chosenCol].getContent();
+                assertEquals(expectedSeed, actualSeed);
             }
 
             static Stream<Arguments> setRowToCheck() {
