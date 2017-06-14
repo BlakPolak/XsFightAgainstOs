@@ -19,7 +19,7 @@ public class Board {
         return cells;
     }
 
-    public Boolean isCellOccupied(Integer chosenRow, Integer chosenCol) {
+    private Boolean isCellOccupied(Integer chosenRow, Integer chosenCol) {
         Cell cell = this.cells[chosenRow][chosenCol];
         Seed cellContent = cell.getContent();
         return cellContent != Seed.EMPTY;
