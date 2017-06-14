@@ -11,6 +11,7 @@ public class UI {
 
     public static void printText(String text) {
         System.out.println(text);
+        System.out.println();
     }
 
     public static String prepareWelcomeText() {
@@ -42,6 +43,19 @@ public class UI {
         return userInput;
     }
 
+    public static String prepareWhichPlayersTurn(Seed currentPlayer) {
+        String player;
+
+        if (currentPlayer.equals(Seed.CROSS)) {
+            player = " 'X' ";
+        } else {
+            player = " 'O' ";
+        }
+        String whichPlayersTurnText = String.format("Player %s, enter your move (row[1-3], column[1-3]): ", player);
+
+        return whichPlayersTurnText;
+    }
+
     public static void printBoard(Board board) {
 
         for (int row = 0; row < 3; row++) {
@@ -62,6 +76,7 @@ public class UI {
                 System.out.println("\n--------");
             }
         }
+        System.out.println("\n");
     }
 
 }
