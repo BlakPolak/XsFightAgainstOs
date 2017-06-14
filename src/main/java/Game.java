@@ -4,7 +4,14 @@ public class Game {
     GameState currentState;
     Seed currentPlayer;
 
+    public Game(){
+        initGame();
+    }
+
     public void initGame() {
+        this.board = new Board();
+        this.currentState = GameState.PLAYING;
+        this.currentPlayer = getRandomPlayer();
     }
 
     public Board getBoard() {
@@ -31,6 +38,15 @@ public class Game {
         return  randomPlayer;
     }
 
-    public void updateGameState(Seed testSeed, Integer testRow, Integer testColumn) {
+
+    public void updateGameState(Seed currentPlayer, Integer row, Integer column) {
+
+        if (currentPlayer.equals(Seed.CROSS)){
+            this.board.setCell(currentPlayer, row, column);
+            this.currentPlayer = Seed.NOUGHT;
+        } else {
+            this.board.setCell(currentPlayer, row, column);
+            this.currentPlayer = Seed.CROSS;
+        }
     }
 }

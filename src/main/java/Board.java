@@ -1,7 +1,10 @@
 
 public class Board {
     private Cell[][] cells;
-    private boolean draw;
+
+    public Board(){
+        init();
+    }
 
     public void init() {
         cells = new Cell[3][3];
