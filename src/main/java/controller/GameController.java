@@ -25,6 +25,8 @@ public class GameController {
 
         while(newGame.getCurrentState().equals(GameState.PLAYING)){
             printBoard(newGame.getBoard());
+            String whichPlayersTurn = prepareWhichPlayersTurn(newGame.getCurrentPlayer());
+            printText(whichPlayersTurn);
             takeUserInput();
         }
     }
