@@ -1,8 +1,8 @@
 
 public class Game {
     Board board;
-    GameState currentState;
-    Seed currentPlayer;
+    private GameState currentState;
+    private Seed currentPlayer;
 
     public Game(){
         initGame();
@@ -11,7 +11,7 @@ public class Game {
     public void initGame() {
         this.board = new Board();
         this.currentState = GameState.PLAYING;
-        this.currentPlayer = getRandomPlayer();
+        this.getRandomPlayer();
     }
 
     public Board getBoard() {
@@ -26,20 +26,16 @@ public class Game {
         return currentPlayer;
     }
 
-    public Seed getRandomPlayer() {
-        Seed randomPlayer;
-
+    private void getRandomPlayer() {
         int randomNumber = (int) Math.random() *100 -1;
         if ( randomNumber >= 50 ) {
-            randomPlayer = Seed.CROSS;
+            this.setCurrentPlayer(Seed.CROSS);
         } else {
-            randomPlayer = Seed.NOUGHT;
+            this.setCurrentPlayer(Seed.NOUGHT);
         }
-        return  randomPlayer;
     }
 
-
-    public void updateGameState(Seed currentPlayer, Integer row, Integer column) {
+    public void updateGameState(Integer row, Integer column) {
         if (this.board.hasWon(currentPlayer , row, column)) {
             if (currentPlayer.equals(Seed.CROSS)) {
                 this.currentState = GameState.CROSS_WON;
@@ -49,7 +45,10 @@ public class Game {
         } else if (this.board.isDraw()) {
             this.currentState = GameState.DRAW;
         }
+        this.updateCurrentPlayer();
+    }
 
+    private void updateCurrentPlayer() {
         if (currentPlayer.equals(Seed.CROSS)){
             this.currentPlayer = Seed.NOUGHT;
         } else {
