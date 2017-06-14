@@ -40,12 +40,19 @@ public class Game {
 
 
     public void updateGameState(Seed currentPlayer, Integer row, Integer column) {
+        if (this.board.hasWon(currentPlayer , row, column)) {
+            if (currentPlayer.equals(Seed.CROSS)) {
+                this.currentState = GameState.CROSS_WON;
+            } else {
+                this.currentState = GameState.NOUGHT_WON;
+            }
+        } else if (this.board.isDraw()) {
+            this.currentState = GameState.DRAW;
+        }
 
         if (currentPlayer.equals(Seed.CROSS)){
-//            this.board.setCell(currentPlayer, row, column);
             this.currentPlayer = Seed.NOUGHT;
         } else {
-//            this.board.setCell(currentPlayer, row, column);
             this.currentPlayer = Seed.CROSS;
         }
     }
