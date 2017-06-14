@@ -22,6 +22,10 @@ public class Game {
         return currentState;
     }
 
+    public void setCurrentPlayer(Seed currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
     public Object getCurrentPlayer() {
         return currentPlayer;
     }
