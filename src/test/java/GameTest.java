@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 public class GameTest {
 
     @Test
@@ -48,13 +47,12 @@ public class GameTest {
         @Test
         @DisplayName("Check if randomPlayer() return player")
         void testIfRandomPlayerMethodReturnPlayer() {
-            assertEquals(Seed.class, testGame.getRandomPlayer().getClass());
+            assertEquals(Seed.class, testGame.getCurrentPlayer().getClass());
         }
 
         @Nested
         class UpdateState{
             Game testGame;
-            Seed testSeed;
             Integer testRow;
             Integer testColumn;
 
@@ -62,27 +60,25 @@ public class GameTest {
             void setUp() {
                 testGame = new Game();
                 testGame.initGame();
-                testSeed = Seed.CROSS;
                 testRow = 1;
                 testColumn = 2;
+                testGame.setCurrentPlayer(Seed.CROSS);
             }
-
 
             @Test
             @DisplayName("Check if Update State method change player ")
-            void testIfRandomPlayerMethodUpdatePlayer() {
-                testGame.updateGameState(testSeed, testRow, testColumn);
+            void testIfUpdateGameStateChangeCurrentPlayer() {
+                testGame.updateGameState(testRow, testColumn);
                 assertEquals(Seed.NOUGHT, testGame.getCurrentPlayer());
             }
 
             @Test
             @DisplayName("Check if Update State update board ")
             void testIfRandomPlayerMethodUpdateBoard() {
-                testGame.updateGameState(testSeed, testRow, testColumn);
+                testGame.updateGameState(testRow, testColumn);
                 assertEquals(Seed.CROSS, testGame.getBoard().getCells()[testRow][testColumn].getContent());
             }
 
         }
-
     }
 }
