@@ -19,7 +19,7 @@ public class Game {
         return board;
     }
 
-    public Object getCurrentState() {
+    public GameState getCurrentState() {
         return currentState;
     }
 
@@ -27,7 +27,7 @@ public class Game {
         this.currentPlayer = currentPlayer;
     }
 
-    public Object getCurrentPlayer() {
+    public Seed getCurrentPlayer() {
         return currentPlayer;
     }
 
