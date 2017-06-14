@@ -1,3 +1,6 @@
+import model.Board;
+import model.Cell;
+import model.Seed;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -19,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class BoardTest {
 
     @Test
-    @DisplayName("Check if Board can be initialized")
+    @DisplayName("Check if model.Board can be initialized")
     void testIfBoardCanBeInitialized() {
         Board board = new Board();
         assertEquals(Board.class, board.getClass());
@@ -36,7 +39,7 @@ public class BoardTest {
         }
 
         @Test
-        @DisplayName("Check if Board initialized proper size board")
+        @DisplayName("Check if model.Board initialized proper size board")
         void testIfBoardInitializedRightBoardSize() {
             testBoard.init();
             Integer expectedRowCount = 3;
@@ -50,7 +53,7 @@ public class BoardTest {
         }
 
         @Test
-        @DisplayName("Check if initialized Board has empty cell")
+        @DisplayName("Check if initialized model.Board has empty cell")
         void testIfBoardCreatesEmptyBoard() {
             testBoard.init();
             Integer testRow = 1;
@@ -59,7 +62,7 @@ public class BoardTest {
         }
 
         @Test
-        @DisplayName("Check that the Board correctly refers to cells")
+        @DisplayName("Check that the model.Board correctly refers to cells")
         void testIfBoardRefersToCells() {
             testBoard.init();
             Integer expectedRowIs1 = 0;
@@ -110,7 +113,7 @@ public class BoardTest {
             }
 
             @Test
-            @DisplayName("Seed is set on board in selected cell")
+            @DisplayName("model.Seed is set on board in selected cell")
             void testIfSeedIsSetOnBoardInSelectedCell() {
                 Seed seed = Seed.CROSS;
                 Integer chosenRow = 1;

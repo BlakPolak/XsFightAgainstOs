@@ -1,4 +1,6 @@
 
+import model.Cell;
+import model.Seed;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CellTest {
 
     @Test
-    @DisplayName("Check if Cell constructor initialized proper row")
+    @DisplayName("Check if model.Cell constructor initialized proper row")
     void testIfCellConstructorInitializedProperlyRow() {
         Integer testRow = 1;
         Integer testColumn = 3;
@@ -18,7 +20,7 @@ class CellTest {
         assertEquals(testRow, cell.getRow());
     }
     @Test
-    @DisplayName("Check if Cell constructor initialized proper column")
+    @DisplayName("Check if model.Cell constructor initialized proper column")
     void testIfCellConstructorInitializedProperlyColumn() {
         Integer testRow = 1;
         Integer testColumn = 3;
@@ -41,7 +43,7 @@ class CellTest {
         }
 
         @Test
-        @DisplayName("Check if cell return Seed as content")
+        @DisplayName("Check if cell return model.Seed as content")
         void testIfCellGetSeedAsContent() {
             assertEquals(Seed.class, testCell.getContent().getClass());
         }
@@ -56,7 +58,7 @@ class CellTest {
         }
 
 //        @Test
-//        @DisplayName("Test if Cell can be bigger than 3x3 table - row")
+//        @DisplayName("Test if model.Cell can be bigger than 3x3 table - row")
 //        void testIfCellCanTakeWrongRowSize() {
 //            Integer testSetRow = 5;
 //            assertThrows(IllegalArgumentException.class,testCell.setRow(testSetRow));
@@ -64,7 +66,7 @@ class CellTest {
 //        }
 //
 //        @Test
-//        @DisplayName("Test if Cell can be bigger than 3x3 table - column")
+//        @DisplayName("Test if model.Cell can be bigger than 3x3 table - column")
 //        void testIfCellCanTakeWrongColumnSize() {
 //            Integer testSetColumn = -1;
 //            assertThrows(IllegalArgumentException.class, testCell.setColumn(testSetColumn));

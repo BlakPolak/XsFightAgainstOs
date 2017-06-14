@@ -1,3 +1,7 @@
+import model.Board;
+import model.Game;
+import model.GameState;
+import model.Seed;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -8,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GameTest {
 
     @Test
-    @DisplayName("Check if Game can be initialized")
+    @DisplayName("Check if model.Game can be initialized")
     void testIfBoardCanBeInitialized() {
         Game game = new Game();
         assertEquals(Game.class, game.getClass());
@@ -27,19 +31,19 @@ public class GameTest {
         }
 
         @Test
-        @DisplayName("Check if Game initialize board")
+        @DisplayName("Check if model.Game initialize board")
         void testIfGameInitializeBoard() {
             assertEquals(Board.class, testGame.getBoard().getClass());
         }
 
         @Test
-        @DisplayName("Check if Game initialize currentState")
+        @DisplayName("Check if model.Game initialize currentState")
         void testIfGameInitializeGameState() {
             assertEquals(GameState.class, testGame.getCurrentState().getClass());
         }
 
         @Test
-        @DisplayName("Check if Game initialize currentPlayer")
+        @DisplayName("Check if model.Game initialize currentPlayer")
         void testIfGameInitializeCurrentPlayer() {
             assertEquals(Seed.class, testGame.getCurrentPlayer().getClass());
         }
