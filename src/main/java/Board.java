@@ -31,7 +31,7 @@ public class Board {
             throw new IllegalArgumentException();
         }
         setCell(seed, row, column);
-        return isWonHorizontally() & isWonVertically() & isWonByTheSlant();
+        return isWonHorizontally(seed) || isWonVertically(seed) || isWonByTheSlant(seed);
     }
 
     public Boolean isDraw() {
@@ -69,5 +69,27 @@ public class Board {
             }
         }
         return false;
+    }
+
+    private Boolean isWonByTheSlant(Seed seed) {
+        return isTheSameInRightSlant(seed) || isTheSameInLeftSlant(seed);
+    }
+
+    private Boolean isTheSameInRightSlant(Seed seed) {
+        Integer column = 2;
+        for (Cell[] row : this.cells) {
+            if (row[column].getContent() != seed) {return false;}
+            column--;
+        }
+        return true;
+    }
+
+    private Boolean isTheSameInLeftSlant(Seed seed) {
+        Integer column = 0;
+        for (Cell[] row : this.cells) {
+            if (row[column].getContent() != seed) {return false;}
+            column++;
+        }
+        return true;
     }
 }
