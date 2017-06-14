@@ -30,9 +30,8 @@ public class Board {
     }
 
     public Boolean hasWon(Seed seed, Integer row, Integer column) {
-        if (this.isCellOccupied(row, column) || !this.isOnBoard(row, column)) {
-            throw new IllegalArgumentException();
-        }
+        if (!this.isOnBoard(row, column)) {throw new IllegalArgumentException();}
+        if (this.isCellOccupied(row, column)) {throw new IllegalArgumentException();}
         setCell(seed, row, column);
         return isWonHorizontally(seed) || isWonVertically(seed) || isWonByTheSlant(seed);
     }
