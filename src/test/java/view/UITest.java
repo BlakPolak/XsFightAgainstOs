@@ -35,4 +35,12 @@ class UITest {
         UI.printText(toPrintSting);
         assertEquals(expectedString, outContent.toString());
     }
+
+    @Test
+    @DisplayName("Prepare Welcome Text Returns String Welcome In Tic Tac Toe Game")
+    void testPrepareWelcomeTextReturnsStringWelcomeInTicTacToeGame() {
+        String expectedString = "Welcome in Tic Tac Toe game!";
+        String actualString = UI.prepareWelcomeText();
+        assertEquals(expectedString, actualString);
+    }
 }
