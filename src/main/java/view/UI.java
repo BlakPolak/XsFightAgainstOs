@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class UI {
 
-
     public static void printText(String text) {
         System.out.println(text);
     }
