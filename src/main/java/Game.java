@@ -42,10 +42,10 @@ public class Game {
     public void updateGameState(Seed currentPlayer, Integer row, Integer column) {
 
         if (currentPlayer.equals(Seed.CROSS)){
-            this.board.setCell(currentPlayer, row, column);
+//            this.board.setCell(currentPlayer, row, column);
             this.currentPlayer = Seed.NOUGHT;
         } else {
-            this.board.setCell(currentPlayer, row, column);
+//            this.board.setCell(currentPlayer, row, column);
             this.currentPlayer = Seed.CROSS;
         }
     }
