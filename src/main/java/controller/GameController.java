@@ -59,8 +59,18 @@ public class GameController {
     }
 
     private void playerWon() {
-        String wonText = UI.prepareWhichPlayerWonText(this.getGame().getCurrentPlayer());
+        Game game = this.getGame();
+        printBoard(game.getBoard());
+        String wonText = UI.prepareWhichPlayerWonText(game.getCurrentPlayer());
         UI.printText(wonText);
+        String playAgainText = UI.preparePlayAgaintText();
+        UI.printText(playAgainText);
+        boolean userDecision = UI.takeUserCharInput();
+        if (userDecision) {
+            game.initGame();
+        } else {
+            game.initGame();
+        }
     }
 
     private Integer getActualRow() {
