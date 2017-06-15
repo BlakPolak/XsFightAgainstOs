@@ -31,7 +31,7 @@ class UITest {
     @DisplayName("PrintText prints the same text as it takes")
     void testPrintTextPrintsTheSameTextAsItTakes() {
         String toPrintSting = "Simple text";
-        String expectedString = "Simple text\n";
+        String expectedString = "Simple text\n\n";
         UI.printText(toPrintSting);
         assertEquals(expectedString, outContent.toString());
     }
