@@ -73,8 +73,8 @@ public class GameController {
                 this.setRowAndColumn(rowAndColumn);
                 newGame.updateGameState(this.getActualRow(), this.getActualColumn());
                 isCorrectAnswer = true;
-            } catch (IllegalArgumentException e) {
-                String occupiedText = prepareCellIsOccupiedText();
+            } catch (IllegalArgumentException e){
+                String occupiedText = prepareThisMoveIsForbiddenText();
                 printText(occupiedText);
             }
         }

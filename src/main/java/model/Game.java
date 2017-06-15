@@ -32,8 +32,8 @@ public class Game {
     }
 
     private void getRandomPlayer() {
-        int randomNumber = (int) Math.random() *100 -1;
-        if (randomNumber >= 50) {
+        int randomNumber = (int) (Math.random() *100)-1;
+        if ( randomNumber >= 50 ) {
             this.setCurrentPlayer(Seed.CROSS);
         } else {
             this.setCurrentPlayer(Seed.NOUGHT);
