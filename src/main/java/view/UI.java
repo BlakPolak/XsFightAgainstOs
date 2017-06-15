@@ -62,8 +62,8 @@ public class UI {
         return playAgainText;
     }
 
-    public static String prepareCellIsOccupiedText() {
-        String cellIsOccupiedText = "Sorry, but this field is already occupied, select another empty field";
+    public static String prepareThisMoveIsForbiddenText() {
+        String cellIsOccupiedText = "Sorry, but this move is not possible, select empty field!";
         return cellIsOccupiedText;
     }
 
@@ -140,5 +140,4 @@ public class UI {
         }
         System.out.println("\n");
     }
-
 }

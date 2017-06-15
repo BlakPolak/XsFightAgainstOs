@@ -74,7 +74,7 @@ public class GameController {
                 newGame.updateGameState(this.getActualRow(), this.getActualColumn());
                 isCorrectAnswer = true;
             } catch (IllegalArgumentException e){
-                String occupiedText = prepareCellIsOccupiedText();
+                String occupiedText = prepareThisMoveIsForbiddenText();
                 printText(occupiedText);
             }
         }

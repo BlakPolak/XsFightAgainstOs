@@ -105,10 +105,10 @@ class UITest {
     }
 
     @Test
-    @DisplayName("Prepare Cell Is Occupied Text returns string 'Unfortunately no one won - there is a draw!'")
-    void testIfPrepareCellIsOccupiedTextReturnsExpectedString() {
-        String expectedString = "Sorry, but this field is already occupied, select another empty field";
-        String actualString = UI.prepareCellIsOccupiedText();
+    @DisplayName("Prepare This Move Is Forbidden Text returns string 'Sorry, but this move is not possible, select empty field!'")
+    void testIfPrepareThisMoveIsForbiddenTextReturnsExpectedString() {
+        String expectedString = "Sorry, but this move is not possible, select empty field!";
+        String actualString = UI.prepareThisMoveIsForbiddenText();
 
         assertEquals(expectedString, actualString);
     }
