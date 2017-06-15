@@ -93,7 +93,9 @@ public class GameController {
                 } else {
                     this.togglePlay();
                 }
-            } catch (IllegalArgumentException ignored) {
+            } catch (IllegalArgumentException e) {
+                String wrongArgumentText = prepareWrongArgumentText();
+                printText(wrongArgumentText);
             }
         }
     }
