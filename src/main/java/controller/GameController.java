@@ -7,10 +7,9 @@ import view.UI;
 
 import java.util.ArrayList;
 
-import static view.UI.*;
-
 public class GameController {
     private static GameController gameController;
+    private UI ui;
     private Game newGame;
     private Integer actualRow;
     private Integer actualColumn;
@@ -18,12 +17,13 @@ public class GameController {
 
     private GameController() {
         this.newGame = new Game();
+        this.ui = new UI();
     }
 
     public static void startGame() {
         gameController = new GameController();
-        String welcome =  prepareWelcomeText();
-        printText(welcome);
+        String welcome = gameController.ui.prepareWelcomeText();
+        gameController.ui.printText(welcome);
         gameController.setPlayOn();
         gameController.playing();
     }
@@ -38,8 +38,8 @@ public class GameController {
 
     private void playing(){
         Seed currentPlayer = this.getGame().getCurrentPlayer();
-        String whichPlayerStart = prepareWhichPlayerStartsText(currentPlayer);
-        printText(whichPlayerStart);
+        String whichPlayerStart = this.ui.prepareWhichPlayerStartsText(currentPlayer);
+        this.ui.printText(whichPlayerStart);
         while (this.play) {
             GameState gameState = this.getGame().getCurrentState();
             switch (gameState) {
@@ -60,12 +60,12 @@ public class GameController {
     }
 
     private void gameStatePlaying() {
-        printBoard(this.getGame().getBoard());
-        String whichPlayersTurn = prepareWhichPlayersTurnText(this.getGame().getCurrentPlayer());
-        printText(whichPlayersTurn);
-        ArrayList rowAndColumn = takeUserInput();
+        this.ui.printBoard(this.getGame().getBoard());
+        String whichPlayersTurn = this.ui.prepareWhichPlayersTurnText(this.getGame().getCurrentPlayer());
+        this.ui.printText(whichPlayersTurn);
+        ArrayList rowAndColumn = this.ui.takeUserInput();
         while (rowAndColumn.size() != 2) {
-            rowAndColumn = takeUserInput();
+            rowAndColumn = this.ui.takeUserInput();
         }
         this.setRowAndColumn(rowAndColumn);
         newGame.updateGameState(this.getActualRow(), this.getActualColumn());
@@ -73,20 +73,20 @@ public class GameController {
 
     private void playerWon() {
         Game game = this.getGame();
-        printBoard(game.getBoard());
-        String wonText = UI.prepareWhichPlayerWonText(game.getCurrentPlayer());
-        UI.printText(wonText);
+        this.ui.printBoard(game.getBoard());
+        String wonText = this.ui.prepareWhichPlayerWonText(game.getCurrentPlayer());
+        this.ui.printText(wonText);
         playAgain();
     }
 
     private void playAgain() {
         Game game = this.getGame();
-        String playAgainText = UI.preparePlayAgainText();
-        UI.printText(playAgainText);
+        String playAgainText = this.ui.preparePlayAgainText();
+        this.ui.printText(playAgainText);
         boolean isCorrectAnswer = false;
         while (!isCorrectAnswer) {
             try {
-                boolean userDecision = UI.takeUserCharInput();
+                boolean userDecision = this.ui.takeUserCharInput();
                 isCorrectAnswer = true;
                 if (userDecision) {
                     game.initGame();
@@ -94,15 +94,15 @@ public class GameController {
                     this.togglePlay();
                 }
             } catch (IllegalArgumentException e) {
-                String wrongArgumentText = prepareWrongArgumentText();
-                printText(wrongArgumentText);
+                String wrongArgumentText = this.ui.prepareWrongArgumentText();
+                this.ui.printText(wrongArgumentText);
             }
         }
     }
 
     private void draw() {
-        String drawText = UI.prepareDrawText();
-        UI.printText(drawText);
+        String drawText = this.ui.prepareDrawText();
+        this.ui.printText(drawText);
         playAgain();
     }
 

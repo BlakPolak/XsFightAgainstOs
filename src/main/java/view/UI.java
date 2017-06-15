@@ -9,17 +9,17 @@ import java.util.Scanner;
 
 public class UI {
 
-    public static void printText(String text) {
+    public void printText(String text) {
         System.out.println(text);
         System.out.println();
     }
 
-    public static String prepareWelcomeText() {
+    public String prepareWelcomeText() {
         String welcomeText = "Welcome in Tic Tac Toe game!";
         return welcomeText;
     }
 
-    public static String prepareWhichPlayerStartsText(Seed currentPlayer) {
+    public String prepareWhichPlayerStartsText(Seed currentPlayer) {
         String player;
 
         if (currentPlayer.equals(Seed.CROSS)) {
@@ -33,18 +33,18 @@ public class UI {
     }
 
 
-    public static String prepareWrongArgumentText(){
+    public String prepareWrongArgumentText(){
         String wrongArgument = "This move is not valid. Try again...";
         return wrongArgument;
     }
 
-    public static String prepareDrawText(){
+    public String prepareDrawText(){
         String drawText = "Unfortunately no one won - there is a draw!";
         return drawText;
 
     }
 
-    public static String prepareWhichPlayerWonText(Seed wonPlayer) {
+    public String prepareWhichPlayerWonText(Seed wonPlayer) {
         String player;
 
         if (wonPlayer.equals(Seed.CROSS)) {
@@ -57,13 +57,12 @@ public class UI {
         return wonPlayerText;
     }
 
-    public static String preparePlayAgainText() {
+    public String preparePlayAgainText() {
         String welcomeText = "Would you like to play again? [y/n]";
         return welcomeText;
     }
 
-
-    public static boolean takeUserCharInput(){
+    public boolean takeUserCharInput(){
         boolean playAgainOrNot;
         Scanner read = new Scanner(System.in);
         String input = read.nextLine().replaceAll("\\s+","");
@@ -78,7 +77,7 @@ public class UI {
     }
 
 
-    public static ArrayList<Integer> takeUserInput() {
+    public ArrayList<Integer> takeUserInput() {
         ArrayList<Integer> rowAndColumnList = new ArrayList<>();
         try {
             Scanner read = new Scanner(System.in);
@@ -102,7 +101,7 @@ public class UI {
     }
 
 
-    public static String prepareWhichPlayersTurnText(Seed currentPlayer) {
+    public String prepareWhichPlayersTurnText(Seed currentPlayer) {
         String player;
 
         if (currentPlayer.equals(Seed.CROSS)) {
@@ -115,7 +114,7 @@ public class UI {
         return whichPlayersTurnText;
     }
 
-    public static void printBoard(Board board) {
+    public void printBoard(Board board) {
 
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column <= 2; column++) {
