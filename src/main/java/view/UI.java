@@ -16,7 +16,6 @@ public class UI {
 
     public static String prepareWelcomeText() {
         String welcomeText = "Welcome in Tic Tac Toe game!";
-
         return welcomeText;
     }
 
