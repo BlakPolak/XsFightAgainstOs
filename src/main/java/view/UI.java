@@ -40,6 +40,11 @@ public class UI {
         return wrongArgument;
     }
 
+    public static String prepareWhichPlayerWonText(Seed winningPlayer) {
+        String wonPlayerText = String.format("Player %s won the game!",  winningPlayer);
+        return wonPlayerText;
+    }
+
 
     public static ArrayList<Integer> takeUserInput() {
         ArrayList<Integer> rowAndColumnList = new ArrayList<>();
