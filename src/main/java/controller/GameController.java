@@ -83,14 +83,18 @@ public class GameController {
         Game game = this.getGame();
         String playAgainText = UI.preparePlayAgainText();
         UI.printText(playAgainText);
-        try {
-            boolean userDecision = UI.takeUserCharInput();
-            if (userDecision) {
-                game.initGame();
-            } else {
-                this.togglePlay();
+        boolean isCorrectAnswer = false;
+        while (!isCorrectAnswer) {
+            try {
+                boolean userDecision = UI.takeUserCharInput();
+                isCorrectAnswer = true;
+                if (userDecision) {
+                    game.initGame();
+                } else {
+                    this.togglePlay();
+                }
+            } catch (IllegalArgumentException ignored) {
             }
-        } catch (IllegalArgumentException ignored) {
         }
     }
 
