@@ -27,19 +27,29 @@ public class GameController {
 
     }
 
-    public void playing(){
+    private void playing(){
         Seed currentPlayer = newGame.getCurrentPlayer();
         String whichPlayerStart = prepareWhichPlayerStartsText(currentPlayer);
         printText(whichPlayerStart);
-
-        while(newGame.getCurrentState().equals(GameState.PLAYING)){
-            printBoard(newGame.getBoard());
-            String whichPlayersTurn = prepareWhichPlayersTurn(newGame.getCurrentPlayer());
-            printText(whichPlayersTurn);
-            ArrayList rowAndColumn = takeUserInput();
-            this.setActualRow((Integer) rowAndColumn.get(0));
-            this.setActualColumn((Integer) rowAndColumn.get(1));
-            newGame.updateGameState(this.getActualRow(), this.getActualColumn());
+        while (true) {
+            GameState gameState = newGame.getCurrentState();
+            switch (gameState) {
+                case PLAYING:
+                    printBoard(newGame.getBoard());
+                    String whichPlayersTurn = prepareWhichPlayersTurn(newGame.getCurrentPlayer());
+                    printText(whichPlayersTurn);
+                    ArrayList rowAndColumn = takeUserInput();
+                    this.setActualRow((Integer) rowAndColumn.get(0));
+                    this.setActualColumn((Integer) rowAndColumn.get(1));
+                    newGame.updateGameState(this.getActualRow(), this.getActualColumn());
+                    break;
+                case CROSS_WON:
+                    break;
+                case NOUGHT_WON:
+                    break;
+                case DRAW:
+                    break;
+            }
         }
     }
 
@@ -52,10 +62,10 @@ public class GameController {
     }
 
     private void setActualColumn(Integer actualColumn) {
-        this.actualColumn = actualColumn;
+        this.actualColumn = actualColumn - 1;
     }
 
     private void setActualRow(Integer actualRow) {
-        this.actualRow = actualRow;
+        this.actualRow = actualRow - 1;
     }
 }
