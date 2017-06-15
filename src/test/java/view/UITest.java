@@ -97,4 +97,12 @@ class UITest {
         assertEquals(expectedString, actualString);
     }
 
+    @Test
+    @DisplayName("Prepare Cell Is Occupied Text Returns String 'Unfortunately no one won - there is a draw!'")
+    void testIfPrepareCellIsOccupiedTextReturnsExpectedString() {
+        String expectedString = "Sorry, but this field is already occupied, select another empty field";
+        String actualString = UI.prepareCellIsOccupiedText();
+        assertEquals(expectedString, actualString);
+    }
+
 }

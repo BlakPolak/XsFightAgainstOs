@@ -60,15 +60,24 @@ public class GameController {
     }
 
     private void gameStatePlaying() {
-        printBoard(this.getGame().getBoard());
-        String whichPlayersTurn = prepareWhichPlayersTurnText(this.getGame().getCurrentPlayer());
-        printText(whichPlayersTurn);
-        ArrayList rowAndColumn = takeUserInput();
-        while (rowAndColumn.size() != 2) {
-            rowAndColumn = takeUserInput();
+        boolean isCorrectAnswer = false;
+        while (!isCorrectAnswer) {
+            try{
+                printBoard(this.getGame().getBoard());
+                String whichPlayersTurn = prepareWhichPlayersTurnText(this.getGame().getCurrentPlayer());
+                printText(whichPlayersTurn);
+                ArrayList rowAndColumn = takeUserInput();
+                while (rowAndColumn.size() != 2) {
+                    rowAndColumn = takeUserInput();
+                }
+                this.setRowAndColumn(rowAndColumn);
+                newGame.updateGameState(this.getActualRow(), this.getActualColumn());
+                isCorrectAnswer = true;
+            } catch (IllegalArgumentException e){
+                String occupiedText = prepareCellIsOccupiedText();
+                printText(occupiedText);
+            }
         }
-        this.setRowAndColumn(rowAndColumn);
-        newGame.updateGameState(this.getActualRow(), this.getActualColumn());
     }
 
     private void playerWon() {
