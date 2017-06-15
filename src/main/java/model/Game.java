@@ -5,7 +5,7 @@ public class Game {
     private GameState currentState;
     private Seed currentPlayer;
 
-    public Game(){
+    public Game() {
         initGame();
     }
 
@@ -33,7 +33,7 @@ public class Game {
 
     private void getRandomPlayer() {
         int randomNumber = (int) Math.random() *100 -1;
-        if ( randomNumber >= 50 ) {
+        if (randomNumber >= 50) {
             this.setCurrentPlayer(Seed.CROSS);
         } else {
             this.setCurrentPlayer(Seed.NOUGHT);
@@ -55,7 +55,7 @@ public class Game {
     }
 
     private void updateCurrentPlayer() {
-        if (currentPlayer.equals(Seed.CROSS)){
+        if (currentPlayer.equals(Seed.CROSS)) {
             this.currentPlayer = Seed.NOUGHT;
         } else {
             this.currentPlayer = Seed.CROSS;

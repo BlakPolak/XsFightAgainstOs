@@ -3,7 +3,7 @@ package model;
 public class Board {
     private Cell[][] cells;
 
-    public Board(){
+    public Board() {
         init();
     }
 

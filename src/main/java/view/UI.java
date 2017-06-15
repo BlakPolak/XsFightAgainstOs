@@ -33,12 +33,12 @@ public class UI {
     }
 
 
-    public static String prepareWrongArgumentText(){
+    public static String prepareWrongArgumentText() {
         String wrongArgument = "This move is not valid. Try again...";
         return wrongArgument;
     }
 
-    public static String prepareDrawText(){
+    public static String prepareDrawText() {
         String drawText = "Unfortunately no one won - there is a draw!";
         return drawText;
 
@@ -68,12 +68,12 @@ public class UI {
     }
 
 
-    public static boolean takeUserCharInput(){
+    public static boolean takeUserCharInput() {
         boolean playAgainOrNot;
         Scanner read = new Scanner(System.in);
         String input = read.nextLine().replaceAll("\\s+","");
         char yesOrNo = input.charAt(0);
-        if ( input.length() == 1 &&
+        if (input.length() == 1 &&
                 (Character.toString(yesOrNo).equals("y") || (Character.toString(yesOrNo).equals("n")))) {
             playAgainOrNot = Character.toString(yesOrNo).equals("y");
         } else {
@@ -89,7 +89,7 @@ public class UI {
             Scanner read = new Scanner(System.in);
 
             String inputs = read.nextLine().replaceAll("\\s+","");
-            if ( (inputs.length() == 2)) {
+            if ((inputs.length() == 2)) {
                 Integer givenRow = Integer.parseInt(inputs.substring(0,1)) -1;
                 Integer givenColumn = Integer.parseInt(inputs.substring(1,2)) -1;
                 rowAndColumnList.add(givenRow);
@@ -97,7 +97,7 @@ public class UI {
             } else {
                 throw new NumberFormatException();
             }
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             String textToPrint =prepareWrongArgumentText();
             printText(textToPrint);
         }
@@ -134,7 +134,7 @@ public class UI {
                     System.out.print("|");
                 }
             }
-            if (row < board.getCells().length - 1){
+            if (row < board.getCells().length - 1) {
                 System.out.println("\n-----------");
             }
         }

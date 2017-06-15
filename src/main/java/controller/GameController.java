@@ -36,7 +36,7 @@ public class GameController {
         this.play = !this.play;
     }
 
-    private void playing(){
+    private void playing() {
         Seed currentPlayer = this.getGame().getCurrentPlayer();
         String whichPlayerStart = prepareWhichPlayerStartsText(currentPlayer);
         printText(whichPlayerStart);
@@ -73,7 +73,7 @@ public class GameController {
                 this.setRowAndColumn(rowAndColumn);
                 newGame.updateGameState(this.getActualRow(), this.getActualColumn());
                 isCorrectAnswer = true;
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 String occupiedText = prepareCellIsOccupiedText();
                 printText(occupiedText);
             }
