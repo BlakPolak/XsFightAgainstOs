@@ -4,6 +4,7 @@ import model.Board;
 import model.GameState;
 import model.Seed;
 import model.Game;
+import view.UI;
 
 import java.util.ArrayList;
 
@@ -38,8 +39,10 @@ public class GameController {
                     this.gameStatePlaying();
                     break;
                 case CROSS_WON:
+                    UI.prepareWhichPlayerWonText(newGame.getCurrentPlayer());
                     break;
                 case NOUGHT_WON:
+                    UI.prepareWhichPlayerWonText(newGame.getCurrentPlayer());
                     break;
                 case DRAW:
                     break;
@@ -52,8 +55,7 @@ public class GameController {
         String whichPlayersTurn = prepareWhichPlayersTurn(newGame.getCurrentPlayer());
         printText(whichPlayersTurn);
         ArrayList rowAndColumn = takeUserInput();
-        this.setActualRow((Integer) rowAndColumn.get(0));
-        this.setActualColumn((Integer) rowAndColumn.get(1));
+        this.setRowAndColumn(rowAndColumn);
         newGame.updateGameState(this.getActualRow(), this.getActualColumn());
     }
 
@@ -65,11 +67,9 @@ public class GameController {
         return this.actualColumn;
     }
 
-    private void setActualColumn(Integer actualColumn) {
-        this.actualColumn = actualColumn;
-    }
-
-    private void setActualRow(Integer actualRow) {
-        this.actualRow = actualRow;
+    private void setRowAndColumn(ArrayList rowAndColumn) {
+        System.out.println(rowAndColumn);
+        this.actualRow = (Integer) rowAndColumn.get(0);
+        this.actualColumn = (Integer) rowAndColumn.get(1);
     }
 }
