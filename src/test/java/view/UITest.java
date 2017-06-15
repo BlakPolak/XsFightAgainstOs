@@ -62,5 +62,13 @@ class UITest {
         assertEquals(expectedString, actualString);
     }
 
+    @Test
+    @DisplayName("Prepare Which Player Won Text Returns String 'Player X/O won the game!'")
+    void testPrepareWhichPlayerWonTextReturnsExpectedString() {
+        String expectedString = "Player 'O' won the game!";
+        Seed wonPlayer = Seed.NOUGHT;
+        String actualString = UI.prepareWhichPlayerWonText(wonPlayer);
+        assertEquals(expectedString, actualString);
+    }
 
 }
