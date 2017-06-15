@@ -58,8 +58,13 @@ public class UI {
     }
 
     public static String preparePlayAgainText() {
-        String welcomeText = "Would you like to play again? [y/n]";
-        return welcomeText;
+        String playAgainText = "Would you like to play again? [y/n]";
+        return playAgainText;
+    }
+
+    public static String prepareCellIsOccupiedText() {
+        String cellIsOccupiedText = "Sorry, but this field is already occupied, select another empty field";
+        return cellIsOccupiedText;
     }
 
 
@@ -84,11 +89,9 @@ public class UI {
             Scanner read = new Scanner(System.in);
 
             String inputs = read.nextLine().replaceAll("\\s+","");
-            Integer rowInput = Integer.parseInt(inputs.substring(0,1)) -1;
-            Integer columnInput = Integer.parseInt(inputs.substring(1,2)) -1;
-            if ( (inputs.length() == 2) && (rowInput > -1 && rowInput < 3 )  && (columnInput > -1 && columnInput < 3 )) {
-                Integer givenRow = rowInput;
-                Integer givenColumn = columnInput;
+            if ( (inputs.length() == 2)) {
+                Integer givenRow = Integer.parseInt(inputs.substring(0,1)) -1;
+                Integer givenColumn = Integer.parseInt(inputs.substring(1,2)) -1;
                 rowAndColumnList.add(givenRow);
                 rowAndColumnList.add(givenColumn);
             } else {
