@@ -68,6 +68,8 @@ public class GameController {
         boolean userDecision = UI.takeUserCharInput();
         if (userDecision) {
             game.initGame();
+        } else {
+            game.initGame();
         }
     }
 
