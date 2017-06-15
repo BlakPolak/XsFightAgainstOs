@@ -11,6 +11,9 @@ import static view.UI.*;
 
 public class GameController {
     static Game newGame;
+    private Integer actualRow;
+    private Integer actualColumn;
+
 
     public static void startGame() {
         newGame = new Game();
@@ -36,5 +39,21 @@ public class GameController {
             System.out.println(rowAndColumn.get(1));
             newGame.updateGameState(selectedRow, selectedColumn);
         }
+    }
+
+    public Integer getActualRow() {
+        return this.actualRow;
+    }
+
+    public Integer getActualColumn() {
+        return this.actualColumn;
+    }
+
+    public void setActualColumn(Integer actualColumn) {
+        this.actualColumn = actualColumn;
+    }
+
+    public void setActualRow(Integer actualRow) {
+        this.actualRow = actualRow;
     }
 }
