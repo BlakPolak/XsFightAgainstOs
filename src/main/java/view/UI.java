@@ -64,25 +64,14 @@ public class UI {
 
 
     public static boolean takeUserCharInput(){
-        boolean playAgainOrNot = false;
-        try {
-            Scanner read = new Scanner(System.in);
-            String input = read.nextLine().replaceAll("\\s+","");
-            if ( input.length() == 1 ) {
-                char yesOrNo = input.charAt(0);
-                if (Character.toString(yesOrNo).equals("y")) {
-                    playAgainOrNot = true;
-                } else if (Character.toString(yesOrNo).equals("n")) {
-                    playAgainOrNot = false;
-                } else {
-                    throw new IllegalArgumentException();
-                }
-            } else {
-                throw new IllegalArgumentException();
-            }
-        } catch ( IllegalArgumentException e ){
-            String text = prepareWrongArgumentText();
-            printText(text);
+        boolean playAgainOrNot;
+        Scanner read = new Scanner(System.in);
+        String input = read.nextLine().replaceAll("\\s+","");
+        char yesOrNo = input.charAt(0);
+        if ( input.length() == 1 &&
+                (Character.toString(yesOrNo).equals("y") || (Character.toString(yesOrNo).equals("n")))) {
+            playAgainOrNot = (Character.toString(yesOrNo).equals("y")) ? true : false;
+        } else {
             throw new IllegalArgumentException();
         }
         return playAgainOrNot;
