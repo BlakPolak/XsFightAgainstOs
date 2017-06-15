@@ -84,9 +84,11 @@ public class UI {
             Scanner read = new Scanner(System.in);
 
             String inputs = read.nextLine().replaceAll("\\s+","");
-            if ( inputs.length() == 2 ) {
-                Integer givenRow = Integer.parseInt(inputs.substring(0,1)) -1;
-                Integer givenColumn = Integer.parseInt(inputs.substring(1,2)) -1;
+            Integer rowInput = Integer.parseInt(inputs.substring(0,1)) -1;
+            Integer columnInput = Integer.parseInt(inputs.substring(1,2)) -1;
+            if ( (inputs.length() == 2) && (rowInput > -1 && rowInput < 3 )  && (columnInput > -1 && columnInput < 3 )) {
+                Integer givenRow = rowInput;
+                Integer givenColumn = columnInput;
                 rowAndColumnList.add(givenRow);
                 rowAndColumnList.add(givenColumn);
             } else {
@@ -96,8 +98,6 @@ public class UI {
             String textToPrint =prepareWrongArgumentText();
             printText(textToPrint);
         }
-
-        System.out.println(rowAndColumnList);
         return rowAndColumnList;
     }
 
