@@ -67,9 +67,10 @@ public class GameController {
         UI.printText(playAgainText);
         boolean userDecision = UI.takeUserCharInput();
         if (userDecision) {
+            System.out.println("y");
             game.initGame();
         } else {
-            game.initGame();
+            System.out.println("n");
         }
     }
 
