@@ -70,7 +70,7 @@ public class UI {
         char yesOrNo = input.charAt(0);
         if ( input.length() == 1 &&
                 (Character.toString(yesOrNo).equals("y") || (Character.toString(yesOrNo).equals("n")))) {
-            playAgainOrNot = (Character.toString(yesOrNo).equals("y")) ? true : false;
+            playAgainOrNot = Character.toString(yesOrNo).equals("y");
         } else {
             throw new IllegalArgumentException();
         }
