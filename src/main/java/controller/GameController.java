@@ -39,27 +39,23 @@ public class GameController {
             ArrayList rowAndColumn = takeUserInput();
             this.setActualRow((Integer) rowAndColumn.get(0));
             this.setActualColumn((Integer) rowAndColumn.get(1));
-//            Integer selectedRow = (Integer) rowAndColumn.get(0);
-//            Integer selectedColumn = (Integer) rowAndColumn.get(1);
-//            System.out.println(rowAndColumn.get(0));
-//            System.out.println(rowAndColumn.get(1));
             newGame.updateGameState(this.getActualRow(), this.getActualColumn());
         }
     }
 
-    public Integer getActualRow() {
+    private Integer getActualRow() {
         return this.actualRow;
     }
 
-    public Integer getActualColumn() {
+    private Integer getActualColumn() {
         return this.actualColumn;
     }
 
-    public void setActualColumn(Integer actualColumn) {
+    private void setActualColumn(Integer actualColumn) {
         this.actualColumn = actualColumn;
     }
 
-    public void setActualRow(Integer actualRow) {
+    private void setActualRow(Integer actualRow) {
         this.actualRow = actualRow;
     }
 }
