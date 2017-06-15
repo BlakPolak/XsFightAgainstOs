@@ -1,6 +1,5 @@
 package controller;
 
-import model.Board;
 import model.GameState;
 import model.Seed;
 import model.Game;
