@@ -45,6 +45,27 @@ public class UI {
         return wonPlayerText;
     }
 
+    public static boolean takeUserCharInput(){
+        boolean playAgainOrNot = false;
+        try {
+            Scanner read = new Scanner(System.in);
+            String input = read.nextLine().replaceAll("\\s+","");
+            if ( input.length() == 1 ) {
+                char yesOrNo = input.charAt(0);
+                if (Character.toString(yesOrNo) == "y") {
+                    playAgainOrNot = true;
+                } else if (Character.toString(yesOrNo) == "n") {
+                    playAgainOrNot = false;
+                }
+            } else {
+                throw new NumberFormatException();
+            }
+        } catch ( NumberFormatException e ){
+            takeUserCharInput();
+        }
+        return playAgainOrNot;
+    }
+
 
     public static ArrayList<Integer> takeUserInput() {
         ArrayList<Integer> rowAndColumnList = new ArrayList<>();
