@@ -53,6 +53,7 @@ public class GameController {
                     this.playerWon();
                     break;
                 case DRAW:
+                    draw();
                     break;
             }
         }
@@ -72,6 +73,11 @@ public class GameController {
         printBoard(game.getBoard());
         String wonText = UI.prepareWhichPlayerWonText(game.getCurrentPlayer());
         UI.printText(wonText);
+        playAgain();
+    }
+
+    private void playAgain() {
+        Game game = this.getGame();
         String playAgainText = UI.preparePlayAgainText();
         UI.printText(playAgainText);
         boolean userDecision = UI.takeUserCharInput();
@@ -80,6 +86,12 @@ public class GameController {
         } else {
             this.togglePlay();
         }
+    }
+
+    private void draw() {
+        String drawText = UI.prepareDrawText();
+        UI.printText(drawText);
+        playAgain();
     }
 
     private Integer getActualRow() {
@@ -91,7 +103,6 @@ public class GameController {
     }
 
     private void setRowAndColumn(ArrayList rowAndColumn) {
-        System.out.println(rowAndColumn);
         this.actualRow = (Integer) rowAndColumn.get(0);
         this.actualColumn = (Integer) rowAndColumn.get(1);
     }
