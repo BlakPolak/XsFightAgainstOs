@@ -14,6 +14,7 @@ public class GameController {
     private Game newGame;
     private Integer actualRow;
     private Integer actualColumn;
+    private boolean play;
 
     private GameController() {
         this.newGame = new Game();
@@ -23,15 +24,23 @@ public class GameController {
         gameController = new GameController();
         String welcome =  prepareWelcomeText();
         printText(welcome);
+        gameController.setPlayOn();
         gameController.playing();
+    }
 
+    private void setPlayOn() {
+        this.play = true;
+    }
+
+    private void togglePlay() {
+        this.play = !this.play;
     }
 
     private void playing(){
         Seed currentPlayer = this.getGame().getCurrentPlayer();
         String whichPlayerStart = prepareWhichPlayerStartsText(currentPlayer);
         printText(whichPlayerStart);
-        while (true) {
+        while (this.play) {
             GameState gameState = this.getGame().getCurrentState();
             switch (gameState) {
                 case PLAYING:
@@ -67,10 +76,9 @@ public class GameController {
         UI.printText(playAgainText);
         boolean userDecision = UI.takeUserCharInput();
         if (userDecision) {
-            System.out.println("y");
             game.initGame();
         } else {
-            System.out.println("n");
+            this.togglePlay();
         }
     }
 
