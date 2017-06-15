@@ -4,6 +4,7 @@ package view;
 import model.Board;
 import model.Seed;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
@@ -34,14 +35,38 @@ public class UI {
     }
 
 
-    public static String takeUserInput() {
-        String userInput;
-        Scanner read = new Scanner(System.in);
-
-        userInput = read.nextLine();
-
-        return userInput;
+    public static String prepareWrongArgument(){
+        String wrongArgument = "This move is not valid. Try again...";
+        return wrongArgument;
     }
+
+
+    public static ArrayList<Integer> takeUserInput() {
+        ArrayList<Integer> rowAndColumnList = new ArrayList<>();
+        try {
+            Scanner read = new Scanner(System.in);
+
+            String inputs = read.nextLine().toString().replaceAll("\\s+","");
+            if ( inputs.length() == 2 ) {
+                Integer givenRow = Integer.parseInt(inputs.substring(0,1));
+                Integer givenColumn = Integer.parseInt(inputs.substring(1,2));
+                System.out.println(givenColumn);
+                System.out.println(givenRow);
+                rowAndColumnList.add(givenRow);
+                rowAndColumnList.add(givenColumn);
+            } else {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e){
+            String textToPrint =prepareWrongArgument();
+            printText(textToPrint);
+            takeUserInput();
+        }
+
+        System.out.println(rowAndColumnList);
+        return rowAndColumnList;
+    }
+
 
     public static String prepareWhichPlayersTurn(Seed currentPlayer) {
         String player;
