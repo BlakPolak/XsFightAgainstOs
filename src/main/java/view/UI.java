@@ -46,7 +46,7 @@ public class UI {
         try {
             Scanner read = new Scanner(System.in);
 
-            String inputs = read.nextLine().toString().replaceAll("\\s+","");
+            String inputs = read.nextLine().replaceAll("\\s+","");
             if ( inputs.length() == 2 ) {
                 Integer givenRow = Integer.parseInt(inputs.substring(0,1));
                 Integer givenColumn = Integer.parseInt(inputs.substring(1,2));
