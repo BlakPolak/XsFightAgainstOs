@@ -33,7 +33,7 @@ public class UI {
     }
 
 
-    public static String prepareWrongArgument(){
+    public static String prepareWrongArgumentText(){
         String wrongArgument = "This move is not valid. Try again...";
         return wrongArgument;
     }
@@ -88,7 +88,7 @@ public class UI {
                 throw new NumberFormatException();
             }
         } catch (NumberFormatException e){
-            String textToPrint =prepareWrongArgument();
+            String textToPrint =prepareWrongArgumentText();
             printText(textToPrint);
             takeUserInput();
         }
