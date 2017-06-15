@@ -1,9 +1,9 @@
 package controller;
 
-import model.Board;
 import model.GameState;
 import model.Seed;
 import model.Game;
+import view.UI;
 
 import java.util.ArrayList;
 
@@ -28,18 +28,20 @@ public class GameController {
     }
 
     private void playing(){
-        Seed currentPlayer = newGame.getCurrentPlayer();
+        Seed currentPlayer = this.getGame().getCurrentPlayer();
         String whichPlayerStart = prepareWhichPlayerStartsText(currentPlayer);
         printText(whichPlayerStart);
         while (true) {
-            GameState gameState = newGame.getCurrentState();
+            GameState gameState = this.getGame().getCurrentState();
             switch (gameState) {
                 case PLAYING:
                     this.gameStatePlaying();
                     break;
                 case CROSS_WON:
+                    this.playerWon();
                     break;
                 case NOUGHT_WON:
+                    this.playerWon();
                     break;
                 case DRAW:
                     break;
@@ -48,13 +50,17 @@ public class GameController {
     }
 
     private void gameStatePlaying() {
-        printBoard(newGame.getBoard());
-        String whichPlayersTurn = prepareWhichPlayersTurn(newGame.getCurrentPlayer());
+        printBoard(this.getGame().getBoard());
+        String whichPlayersTurn = prepareWhichPlayersTurn(this.getGame().getCurrentPlayer());
         printText(whichPlayersTurn);
         ArrayList rowAndColumn = takeUserInput();
-        this.setActualRow((Integer) rowAndColumn.get(0));
-        this.setActualColumn((Integer) rowAndColumn.get(1));
+        this.setRowAndColumn(rowAndColumn);
         newGame.updateGameState(this.getActualRow(), this.getActualColumn());
+    }
+
+    private void playerWon() {
+        String wonText = UI.prepareWhichPlayerWonText(this.getGame().getCurrentPlayer());
+        UI.printText(wonText);
     }
 
     private Integer getActualRow() {
@@ -65,11 +71,13 @@ public class GameController {
         return this.actualColumn;
     }
 
-    private void setActualColumn(Integer actualColumn) {
-        this.actualColumn = actualColumn;
+    private void setRowAndColumn(ArrayList rowAndColumn) {
+        System.out.println(rowAndColumn);
+        this.actualRow = (Integer) rowAndColumn.get(0);
+        this.actualColumn = (Integer) rowAndColumn.get(1);
     }
 
-    private void setActualRow(Integer actualRow) {
-        this.actualRow = actualRow;
+    private Game getGame() {
+        return this.newGame;
     }
 }

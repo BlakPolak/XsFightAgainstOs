@@ -88,8 +88,6 @@ public class UI {
             if ( inputs.length() == 2 ) {
                 Integer givenRow = Integer.parseInt(inputs.substring(0,1)) -1;
                 Integer givenColumn = Integer.parseInt(inputs.substring(1,2)) -1;
-                System.out.println(givenColumn);
-                System.out.println(givenRow);
                 rowAndColumnList.add(givenRow);
                 rowAndColumnList.add(givenColumn);
             } else {
