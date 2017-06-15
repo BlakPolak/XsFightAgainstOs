@@ -96,5 +96,4 @@ class UITest {
         String actualString = UI.prepareDrawText();
         assertEquals(expectedString, actualString);
     }
-
 }
