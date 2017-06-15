@@ -64,15 +64,19 @@ public class UI {
             String input = read.nextLine().replaceAll("\\s+","");
             if ( input.length() == 1 ) {
                 char yesOrNo = input.charAt(0);
-                if (Character.toString(yesOrNo) == "y") {
+                if (Character.toString(yesOrNo).equals("y")) {
                     playAgainOrNot = true;
-                } else if (Character.toString(yesOrNo) == "n") {
+                } else if (Character.toString(yesOrNo).equals("n")) {
                     playAgainOrNot = false;
+                } else {
+                    throw new IllegalArgumentException();
                 }
             } else {
-                throw new NumberFormatException();
+                throw new IllegalArgumentException();
             }
-        } catch ( NumberFormatException e ){
+        } catch ( IllegalArgumentException e ){
+            String text = prepareWrongArgumentText();
+            printText(text);
             takeUserCharInput();
         }
         return playAgainOrNot;
