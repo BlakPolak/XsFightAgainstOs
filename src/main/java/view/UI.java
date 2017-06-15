@@ -45,6 +45,12 @@ public class UI {
         return wonPlayerText;
     }
 
+    public static String preparePlayAgaintText() {
+        String welcomeText = "Would you like to play again? [y/n]";
+        return welcomeText;
+    }
+
+
     public static boolean takeUserCharInput(){
         boolean playAgainOrNot = false;
         try {
