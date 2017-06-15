@@ -29,20 +29,20 @@ public class GameController {
     }
 
     private void playing(){
-        Seed currentPlayer = newGame.getCurrentPlayer();
+        Seed currentPlayer = this.getGame().getCurrentPlayer();
         String whichPlayerStart = prepareWhichPlayerStartsText(currentPlayer);
         printText(whichPlayerStart);
         while (true) {
-            GameState gameState = newGame.getCurrentState();
+            GameState gameState = this.getGame().getCurrentState();
             switch (gameState) {
                 case PLAYING:
                     this.gameStatePlaying();
                     break;
                 case CROSS_WON:
-                    UI.prepareWhichPlayerWonText(newGame.getCurrentPlayer());
+                    this.playerWon();
                     break;
                 case NOUGHT_WON:
-                    UI.prepareWhichPlayerWonText(newGame.getCurrentPlayer());
+                    this.playerWon();
                     break;
                 case DRAW:
                     break;
@@ -51,12 +51,17 @@ public class GameController {
     }
 
     private void gameStatePlaying() {
-        printBoard(newGame.getBoard());
-        String whichPlayersTurn = prepareWhichPlayersTurn(newGame.getCurrentPlayer());
+        printBoard(this.getGame().getBoard());
+        String whichPlayersTurn = prepareWhichPlayersTurn(this.getGame().getCurrentPlayer());
         printText(whichPlayersTurn);
         ArrayList rowAndColumn = takeUserInput();
         this.setRowAndColumn(rowAndColumn);
         newGame.updateGameState(this.getActualRow(), this.getActualColumn());
+    }
+
+    private void playerWon() {
+        String wonText = UI.prepareWhichPlayerWonText(this.getGame().getCurrentPlayer());
+        UI.printText(wonText);
     }
 
     private Integer getActualRow() {
@@ -71,5 +76,9 @@ public class GameController {
         System.out.println(rowAndColumn);
         this.actualRow = (Integer) rowAndColumn.get(0);
         this.actualColumn = (Integer) rowAndColumn.get(1);
+    }
+
+    private Game getGame() {
+        return this.newGame;
     }
 }
