@@ -81,7 +81,7 @@ class UITest {
 
 
     @Test
-    @DisplayName("Prepare Which Players Turn Text Returns String 'Would you like to play again? [y/n]'")
+    @DisplayName("Prepare Which Players Turn Text Returns String 'Player 'X/O', enter your move (row[1-3], column[1-3]):'")
     void testWhichPlayersTurnTextReturnsExpectedString() {
         String expectedString = "Player 'X', enter your move (row[1-3], column[1-3]): ";
         Seed currentPlayer = Seed.CROSS;
@@ -89,6 +89,12 @@ class UITest {
         assertEquals(expectedString, actualString);
     }
 
-
+    @Test
+    @DisplayName("Prepare Draw Text Returns String 'Unfortunately no one won - there is a draw!'")
+    void testIfPrepareDrawTextReturnsExpectedString() {
+        String expectedString = "Unfortunately no one won - there is a draw!";
+        String actualString = UI.prepareDrawText();
+        assertEquals(expectedString, actualString);
+    }
 
 }
