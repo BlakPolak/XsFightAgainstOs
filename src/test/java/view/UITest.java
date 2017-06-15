@@ -30,7 +30,7 @@ class UITest {
 
     @Test
     @DisplayName("PrintText prints the text as expected")
-    void testPrintTextPrintsTextInExpectedWay() {
+    void testIfPrintTextPrintsTextInExpectedWay() {
         String toPrintSting = "Simple text";
         String expectedString = "Simple text\n\n";
         UI.printText(toPrintSting);
@@ -39,7 +39,7 @@ class UITest {
 
     @Test
     @DisplayName("Prepare Welcome Text Returns String Welcome In Tic Tac Toe Game")
-    void testPrepareWelcomeTextReturnsExpectedString() {
+    void testIfPrepareWelcomeTextReturnsExpectedString() {
         String expectedString = "Welcome in Tic Tac Toe game!";
         String actualString = UI.prepareWelcomeText();
         assertEquals(expectedString, actualString);
@@ -47,7 +47,7 @@ class UITest {
 
     @Test
     @DisplayName("Prepare Which Player Starts Text Returns String 'Player X/O will be the first player this round!'")
-    void testPrepareWhichPlayerStartsTextReturnsExpectedString() {
+    void testIfPrepareWhichPlayerStartsTextReturnsExpectedString() {
         String expectedString = "Player  'X'  will be the first player this round!";
         Seed player = Seed.CROSS;
         String actualString = UI.prepareWhichPlayerStartsText(player);
@@ -56,7 +56,7 @@ class UITest {
 
     @Test
     @DisplayName("Prepare Wrong Argument Text Returns String 'This move is not valid. Try again...'")
-    void testPrepareWrongArgumentTextReturnsExpectedString() {
+    void testIfPrepareWrongArgumentTextReturnsExpectedString() {
         String expectedString = "This move is not valid. Try again...";
         String actualString = UI.prepareWrongArgumentText();
         assertEquals(expectedString, actualString);
@@ -64,11 +64,22 @@ class UITest {
 
     @Test
     @DisplayName("Prepare Which Player Won Text Returns String 'Player X/O won the game!'")
-    void testPrepareWhichPlayerWonTextReturnsExpectedString() {
+    void testIfPrepareWhichPlayerWonTextReturnsExpectedString() {
         String expectedString = "Player 'O' won the game!";
         Seed wonPlayer = Seed.NOUGHT;
         String actualString = UI.prepareWhichPlayerWonText(wonPlayer);
         assertEquals(expectedString, actualString);
     }
+
+    @Test
+    @DisplayName("Prepare Play Again Text Returns String 'Would you like to play again? [y/n]'")
+    void testIfPreparePlayAgainTextReturnsExpectedString() {
+        String expectedString = "Player 'O' won the game!";
+        Seed wonPlayer = Seed.NOUGHT;
+        String actualString = UI.prepareWhichPlayerWonText(wonPlayer);
+        assertEquals(expectedString, actualString);
+    }
+
+
 
 }
