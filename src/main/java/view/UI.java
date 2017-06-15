@@ -48,8 +48,8 @@ public class UI {
 
             String inputs = read.nextLine().replaceAll("\\s+","");
             if ( inputs.length() == 2 ) {
-                Integer givenRow = Integer.parseInt(inputs.substring(0,1));
-                Integer givenColumn = Integer.parseInt(inputs.substring(1,2));
+                Integer givenRow = Integer.parseInt(inputs.substring(0,1)) -1;
+                Integer givenColumn = Integer.parseInt(inputs.substring(1,2)) -1;
                 System.out.println(givenColumn);
                 System.out.println(givenRow);
                 rowAndColumnList.add(givenRow);
@@ -87,7 +87,7 @@ public class UI {
             for (int column = 0; column <= 2; column++) {
 
                 if (board.getCells()[row][column].getContent().equals(Seed.EMPTY)) {
-                    System.out.print("  ");
+                    System.out.print("   ");
                 } else if (board.getCells()[row][column].getContent().equals(Seed.CROSS)) {
                     System.out.print(" X ");
                 } else if (board.getCells()[row][column].getContent().equals(Seed.NOUGHT)) {
@@ -98,7 +98,7 @@ public class UI {
                 }
             }
             if (row < board.getCells().length - 1){
-                System.out.println("\n--------");
+                System.out.println("\n-----------");
             }
         }
         System.out.println("\n");
