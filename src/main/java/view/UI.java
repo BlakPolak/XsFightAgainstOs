@@ -38,8 +38,16 @@ public class UI {
         return wrongArgument;
     }
 
-    public static String prepareWhichPlayerWonText(Seed winningPlayer) {
-        String wonPlayerText = String.format("Player %s won the game!",  winningPlayer);
+    public static String prepareWhichPlayerWonText(Seed wonPlayer) {
+        String player;
+
+        if (wonPlayer.equals(Seed.CROSS)) {
+            player = " 'X' ";
+        } else {
+            player = " 'O' ";
+        }
+
+        String wonPlayerText = String.format("Player %s won the game!",  player);
         return wonPlayerText;
     }
 
