@@ -49,8 +49,9 @@ public class Game {
             }
         } else if (this.board.isDraw()) {
             this.currentState = GameState.DRAW;
+        } else {
+            this.updateCurrentPlayer();
         }
-        this.updateCurrentPlayer();
     }
 
     private void updateCurrentPlayer() {
