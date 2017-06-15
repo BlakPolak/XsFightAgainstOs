@@ -62,10 +62,10 @@ public class GameController {
     }
 
     private void setActualColumn(Integer actualColumn) {
-        this.actualColumn = actualColumn - 1;
+        this.actualColumn = actualColumn;
     }
 
     private void setActualRow(Integer actualRow) {
-        this.actualRow = actualRow - 1;
+        this.actualRow = actualRow;
     }
 }
