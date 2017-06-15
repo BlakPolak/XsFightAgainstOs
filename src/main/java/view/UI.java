@@ -83,7 +83,7 @@ public class UI {
         } catch ( IllegalArgumentException e ){
             String text = prepareWrongArgumentText();
             printText(text);
-            takeUserCharInput();
+            throw new IllegalArgumentException();
         }
         return playAgainOrNot;
     }
@@ -106,7 +106,6 @@ public class UI {
         } catch (NumberFormatException e){
             String textToPrint =prepareWrongArgumentText();
             printText(textToPrint);
-            takeUserInput();
         }
 
         System.out.println(rowAndColumnList);
