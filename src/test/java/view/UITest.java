@@ -53,4 +53,14 @@ class UITest {
         String actualString = UI.prepareWhichPlayerStartsText(player);
         assertEquals(expectedString, actualString);
     }
+
+    @Test
+    @DisplayName("Prepare Wrong Argument Text Returns String 'This move is not valid. Try again...'")
+    void testPrepareWrongArgumentTextReturnsExpectedString() {
+        String expectedString = "This move is not valid. Try again...";
+        String actualString = UI.prepareWrongArgumentText();
+        assertEquals(expectedString, actualString);
+    }
+
+
 }
