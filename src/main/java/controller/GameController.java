@@ -35,13 +35,7 @@ public class GameController {
             GameState gameState = newGame.getCurrentState();
             switch (gameState) {
                 case PLAYING:
-                    printBoard(newGame.getBoard());
-                    String whichPlayersTurn = prepareWhichPlayersTurn(newGame.getCurrentPlayer());
-                    printText(whichPlayersTurn);
-                    ArrayList rowAndColumn = takeUserInput();
-                    this.setActualRow((Integer) rowAndColumn.get(0));
-                    this.setActualColumn((Integer) rowAndColumn.get(1));
-                    newGame.updateGameState(this.getActualRow(), this.getActualColumn());
+                    this.gameStatePlaying();
                     break;
                 case CROSS_WON:
                     break;
@@ -51,6 +45,16 @@ public class GameController {
                     break;
             }
         }
+    }
+
+    private void gameStatePlaying() {
+        printBoard(newGame.getBoard());
+        String whichPlayersTurn = prepareWhichPlayersTurn(newGame.getCurrentPlayer());
+        printText(whichPlayersTurn);
+        ArrayList rowAndColumn = takeUserInput();
+        this.setActualRow((Integer) rowAndColumn.get(0));
+        this.setActualColumn((Integer) rowAndColumn.get(1));
+        newGame.updateGameState(this.getActualRow(), this.getActualColumn());
     }
 
     private Integer getActualRow() {
