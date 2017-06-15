@@ -38,6 +38,12 @@ public class UI {
         return wrongArgument;
     }
 
+    public static String prepareDrawText(){
+        String drawText = "Unfortunately no one won - there is a draw!";
+        return drawText;
+
+    }
+
     public static String prepareWhichPlayerWonText(Seed wonPlayer) {
         String player;
 
@@ -51,7 +57,7 @@ public class UI {
         return wonPlayerText;
     }
 
-    public static String preparePlayAgaintText() {
+    public static String preparePlayAgainText() {
         String welcomeText = "Would you like to play again? [y/n]";
         return welcomeText;
     }
@@ -108,13 +114,13 @@ public class UI {
     }
 
 
-    public static String prepareWhichPlayersTurn(Seed currentPlayer) {
+    public static String prepareWhichPlayersTurnText(Seed currentPlayer) {
         String player;
 
         if (currentPlayer.equals(Seed.CROSS)) {
-            player = " 'X' ";
+            player = "'X'";
         } else {
-            player = " 'O' ";
+            player = "'O'";
         }
         String whichPlayersTurnText = String.format("Player %s, enter your move (row[1-3], column[1-3]): ", player);
 

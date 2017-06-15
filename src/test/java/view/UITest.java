@@ -75,7 +75,17 @@ class UITest {
     @DisplayName("Prepare Play Again Text Returns String 'Would you like to play again? [y/n]'")
     void testIfPreparePlayAgainTextReturnsExpectedString() {
         String expectedString = "Would you like to play again? [y/n]";
-        String actualString = UI.preparePlayAgaintText();
+        String actualString = UI.preparePlayAgainText();
+        assertEquals(expectedString, actualString);
+    }
+
+
+    @Test
+    @DisplayName("Prepare Which Players Turn Text Returns String 'Would you like to play again? [y/n]'")
+    void testWhichPlayersTurnTextReturnsExpectedString() {
+        String expectedString = "Player 'X', enter your move (row[1-3], column[1-3]): ";
+        Seed currentPlayer = Seed.CROSS;
+        String actualString = UI.prepareWhichPlayersTurnText(currentPlayer);
         assertEquals(expectedString, actualString);
     }
 
