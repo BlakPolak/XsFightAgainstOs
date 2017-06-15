@@ -13,11 +13,11 @@ public class GameTest {
 
     @Test
     @DisplayName("Check if model.Game can be initialized")
-    void testIfBoardCanBeInitialized() {
+    void testIfGameCanBeInitialized() {
         Game game = new Game();
+
         assertEquals(Game.class, game.getClass());
     }
-
 
     @Nested
     class GameInitialized {
@@ -50,7 +50,7 @@ public class GameTest {
 
         @Test
         @DisplayName("Check if randomPlayer() return player")
-        void testIfRandomPlayerMethodReturnPlayer() {
+        void testIfRandomPlayerReturnPlayer() {
             assertEquals(Seed.class, testGame.getCurrentPlayer().getClass());
         }
 
@@ -73,6 +73,7 @@ public class GameTest {
             @DisplayName("Check if Update State method change player ")
             void testIfUpdateGameStateChangeCurrentPlayer() {
                 testGame.updateGameState(testRow, testColumn);
+
                 assertEquals(Seed.NOUGHT, testGame.getCurrentPlayer());
             }
 
@@ -80,9 +81,9 @@ public class GameTest {
             @DisplayName("Check if Update State update board ")
             void testIfRandomPlayerMethodUpdateBoard() {
                 testGame.updateGameState(testRow, testColumn);
+
                 assertEquals(Seed.CROSS, testGame.getBoard().getCells()[testRow][testColumn].getContent());
             }
-
         }
     }
 }

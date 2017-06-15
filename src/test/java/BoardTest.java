@@ -1,6 +1,7 @@
 import model.Board;
 import model.Cell;
 import model.Seed;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -246,6 +247,7 @@ public class BoardTest {
             void testIfIsDrawReturnsTrueIfMovesAreImpossible() {
                 setAllCellsInBoardToCross();
                 Boolean isDraw = testBoard.isDraw();
+
                 assertTrue(isDraw);
             }
 

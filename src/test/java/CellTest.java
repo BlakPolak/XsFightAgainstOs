@@ -1,4 +1,3 @@
-
 import model.Cell;
 import model.Seed;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,18 +12,21 @@ class CellTest {
 
     @Test
     @DisplayName("Check if model.Cell constructor initialized proper row")
-    void testIfCellConstructorInitializedProperlyRow() {
+    void testIfCellConstructorInitializedProperRow() {
         Integer testRow = 1;
         Integer testColumn = 3;
         Cell cell = new Cell(testRow, testColumn);
+
         assertEquals(testRow, cell.getRow());
     }
+
     @Test
     @DisplayName("Check if model.Cell constructor initialized proper column")
-    void testIfCellConstructorInitializedProperlyColumn() {
+    void testIfCellConstructorInitializedProperColumn() {
         Integer testRow = 1;
         Integer testColumn = 3;
         Cell cell = new Cell(testRow, testColumn);
+
         assertEquals(testColumn, cell.getColumn());
     }
 
@@ -43,33 +45,18 @@ class CellTest {
         }
 
         @Test
-        @DisplayName("Check if cell return model.Seed as content")
+        @DisplayName("Check if cell return seed as content")
         void testIfCellGetSeedAsContent() {
             assertEquals(Seed.class, testCell.getContent().getClass());
         }
 
         @Test
         @DisplayName("Check if clear() method clear values")
-        void testIfClearClearsObjectFromValues() {
+        void testIfClearMethodClearsValues() {
             testCell.setContent(Seed.CROSS);
             testCell.clear();
+
             assertEquals(Seed.EMPTY, testCell.getContent());
-
         }
-
-//        @Test
-//        @DisplayName("Test if model.Cell can be bigger than 3x3 table - row")
-//        void testIfCellCanTakeWrongRowSize() {
-//            Integer testSetRow = 5;
-//            assertThrows(IllegalArgumentException.class,testCell.setRow(testSetRow));
-//
-//        }
-//
-//        @Test
-//        @DisplayName("Test if model.Cell can be bigger than 3x3 table - column")
-//        void testIfCellCanTakeWrongColumnSize() {
-//            Integer testSetColumn = -1;
-//            assertThrows(IllegalArgumentException.class, testCell.setColumn(testSetColumn));
-//        }
     }
 }
