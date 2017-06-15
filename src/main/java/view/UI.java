@@ -42,9 +42,9 @@ public class UI {
         String player;
 
         if (wonPlayer.equals(Seed.CROSS)) {
-            player = " 'X' ";
+            player = "'X'";
         } else {
-            player = " 'O' ";
+            player = "'O'";
         }
 
         String wonPlayerText = String.format("Player %s won the game!",  player);
