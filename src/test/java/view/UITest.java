@@ -74,9 +74,8 @@ class UITest {
     @Test
     @DisplayName("Prepare Play Again Text Returns String 'Would you like to play again? [y/n]'")
     void testIfPreparePlayAgainTextReturnsExpectedString() {
-        String expectedString = "Player 'O' won the game!";
-        Seed wonPlayer = Seed.NOUGHT;
-        String actualString = UI.prepareWhichPlayerWonText(wonPlayer);
+        String expectedString = "Would you like to play again? [y/n]";
+        String actualString = UI.preparePlayAgaintText();
         assertEquals(expectedString, actualString);
     }
 
