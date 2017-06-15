@@ -51,7 +51,7 @@ public class GameController {
 
     private void gameStatePlaying() {
         printBoard(this.getGame().getBoard());
-        String whichPlayersTurn = prepareWhichPlayersTurn(this.getGame().getCurrentPlayer());
+        String whichPlayersTurn = prepareWhichPlayersTurnText(this.getGame().getCurrentPlayer());
         printText(whichPlayersTurn);
         ArrayList rowAndColumn = takeUserInput();
         this.setRowAndColumn(rowAndColumn);
@@ -63,7 +63,7 @@ public class GameController {
         printBoard(game.getBoard());
         String wonText = UI.prepareWhichPlayerWonText(game.getCurrentPlayer());
         UI.printText(wonText);
-        String playAgainText = UI.preparePlayAgaintText();
+        String playAgainText = UI.preparePlayAgainText();
         UI.printText(playAgainText);
         boolean userDecision = UI.takeUserCharInput();
         if (userDecision) {
