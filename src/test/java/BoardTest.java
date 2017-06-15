@@ -44,8 +44,11 @@ public class BoardTest {
             testBoard.init();
             Integer expectedRowCount = 3;
             Integer expectedColumnCount = 3;
-            Integer testRowCount = Array.getLength(testBoard.getCells());
-            Integer testColCount = Array.getLength(testBoard.getCells()[0]);
+            Integer rowOnCell = 0;
+            Integer columnOnCell = 1;
+            Integer testRowCount = Array.getLength(testBoard.getCells()[rowOnCell]);
+            Integer testColCount = Array.getLength(testBoard.getCells()[columnOnCell]);
+
             assertAll("Check 3x3 board",
                 () -> assertEquals(expectedRowCount, testRowCount, "Test row count"),
                 () -> assertEquals(expectedColumnCount, testColCount, "Test column count")
@@ -58,6 +61,7 @@ public class BoardTest {
             testBoard.init();
             Integer testRow = 1;
             Integer testColumn = 2;
+
             assertEquals(Seed.EMPTY, testBoard.getCells()[testRow][testColumn].getContent());
         }
 
@@ -68,10 +72,15 @@ public class BoardTest {
             Integer expectedRowIs1 = 0;
             Integer expectedRowIs2 = 1;
             Integer expectedColumnIs3 = 2;
+            Integer row2CellCoordinate = 1;
+            Integer row3CellCoordinate = 2;
+            Integer column1CellCoordinate = 0;
+            Integer column3CellCoordinate = 2;
+
             assertAll("Check 3 cells",
-                () -> assertEquals(expectedRowIs2, testBoard.getCells()[1][1].getRow(), "Test for second row"),
-                () -> assertEquals(expectedRowIs1, testBoard.getCells()[2][0].getColumn(), "Test for first row"),
-                () -> assertEquals(expectedColumnIs3, testBoard.getCells()[2][2].getColumn(), "Test for third column"));
+                    () -> assertEquals(expectedRowIs1, testBoard.getCells()[row3CellCoordinate][column1CellCoordinate].getColumn(), "Test for first row"),
+                    () -> assertEquals(expectedRowIs2, testBoard.getCells()[row2CellCoordinate][column3CellCoordinate].getRow(), "Test for second row"),
+                    () -> assertEquals(expectedColumnIs3, testBoard.getCells()[row3CellCoordinate][column3CellCoordinate].getColumn(), "Test for third column"));
         }
 
         @Nested
@@ -93,34 +102,38 @@ public class BoardTest {
 
             @Test
             @DisplayName("Throws IllegalArgumentException when chosen cell is occupied")
-            void testThrowsIllegalArgumentExceptionWhenChosenCellIsOccupied() {
+            void testIfThrowsIllegalArgumentExceptionWhenChosenCellIsOccupied() {
                 Seed seed = Seed.CROSS;
                 setCellInBoardToCross(SECOND_ROW, SECOND_COLUMN);
+
                 assertThrows(IllegalArgumentException.class, () -> {
                     testBoard.hasWon(seed, SECOND_ROW, SECOND_COLUMN);
                 });
             }
 
             @Test
-            @DisplayName("IllegalArgumentException When chosen cell isn't on board")
-            void testIllegalArgumentExceptionWhenChosenCellIsNotOnBoard() {
+            @DisplayName("Throws IllegalArgumentException When chosen cell isn't on board")
+            void testIfThrowsIllegalArgumentExceptionWhenChosenCellIsNotOnBoard() {
                 Seed seed = Seed.CROSS;
                 Integer chosenRow = 5;
                 Integer chosenCol = -1;
+
                 assertThrows(IllegalArgumentException.class, () -> {
                     testBoard.hasWon(seed, chosenRow, chosenCol);
                 });
             }
 
             @Test
-            @DisplayName("model.Seed is set on board in selected cell")
+            @DisplayName("Check if seed is set on board in selected cell")
             void testIfSeedIsSetOnBoardInSelectedCell() {
                 Seed seed = Seed.CROSS;
                 Integer chosenRow = 1;
                 Integer chosenCol = 1;
                 testBoard.hasWon(seed, chosenRow, chosenCol);
+
                 Seed expectedSeed = Seed.CROSS;
                 Seed actualSeed = testBoard.getCells()[chosenRow][chosenCol].getContent();
+
                 assertEquals(expectedSeed, actualSeed);
             }
 
@@ -128,6 +141,7 @@ public class BoardTest {
                 Integer firstRow = 0;
                 Integer secondRow = 1;
                 Integer thirdRow = 2;
+
                 return Stream.of(
                 ObjectArrayArguments.create(firstRow),
                 ObjectArrayArguments.create(secondRow),
@@ -138,7 +152,7 @@ public class BoardTest {
             @ParameterizedTest
             @MethodSource(names = "setRowToCheck")
             @DisplayName("Check hasWon() when user should win with seeds horizontal configuration")
-            void testUserWinIfSeedsInRow(Integer row) {
+            void testIfUserWinWhen3SeedsInRow(Integer row) {
                 Integer firstCol = 0;
                 Integer secondCol = 1;
                 setCellInBoardToCross(row, firstCol);
@@ -146,17 +160,19 @@ public class BoardTest {
                 Integer userChoice = 2;
                 Seed seed = Seed.CROSS;
                 Boolean hasWon = testBoard.hasWon(seed, row, userChoice);
+
                 assertTrue(hasWon);
             }
 
             @ParameterizedTest
             @MethodSource(names = "setRowToCheck")
             @DisplayName("Check hasWon() when user should not win with 2 seeds in one row")
-            void testUserDoesNotWinIfOnlyTwoSeedsInRow(Integer row) {
+            void testIfUserDoesNotWinWhenOnlyTwoSeedsInRow(Integer row) {
                 setCellInBoardToCross(row, FIRST_COLUMN);
                 Integer userChoice = 2;
                 Seed seed = Seed.CROSS;
                 Boolean hasWon = testBoard.hasWon(seed, row, userChoice);
+
                 assertFalse(hasWon);
             }
 
@@ -171,30 +187,33 @@ public class BoardTest {
             @ParameterizedTest
             @MethodSource(names = "setColumnToCheck")
             @DisplayName("Check hasWon() when user should win with seeds Vertical configuration")
-            void testUserWinIfSeedsInColumn(Integer col) {
+            void testIfUserWinWhen3SeedsInColumn(Integer col) {
                 setCellInBoardToCross(FIRST_ROW, col);
                 setCellInBoardToCross(THIRD_ROW, col);
                 Integer userChoice = 1;
                 Seed seed = Seed.CROSS;
                 Boolean hasWon = testBoard.hasWon(seed, userChoice, col);
+
                 assertTrue(hasWon);
             }
 
             @ParameterizedTest
             @MethodSource(names = "setColumnToCheck")
             @DisplayName("Check hasWon() when user should not win with only 2 seeds in column")
-            void testUserDoesNotWinIfOnlyTwoSeedsInColumn(Integer col) {
+            void testIfUserDoesNotWinWhenOnlyTwoSeedsInColumn(Integer col) {
                 Integer firstRow = 0;
                 setCellInBoardToCross(firstRow, col);
                 Integer userChoice = 1;
                 Seed seed = Seed.CROSS;
                 Boolean hasWon = testBoard.hasWon(seed, userChoice, col);
+
                 assertFalse(hasWon);
             }
 
             static Stream<Arguments> setColumnInFirstAndLastRow() {
                 Integer firstCol = 0;
                 Integer thirdCol = 2;
+
                 return Stream.of(
                 ObjectArrayArguments.create(firstCol, thirdCol),
                 ObjectArrayArguments.create(thirdCol, firstCol)
@@ -203,26 +222,28 @@ public class BoardTest {
 
             @ParameterizedTest
             @MethodSource(names = "setColumnInFirstAndLastRow")
-            @DisplayName("Win if user have seeds by the slant")
-            void testWinIfUserHaveSeedsByTheSlant(Integer colInFirstRow, Integer colInThirdRow) {
+            @DisplayName("Check hasWon() when user should win with seeds by the slant configuration")
+            void testIfUserWinWhen3SeedsByTheSlant(Integer colInFirstRow, Integer colInThirdRow) {
                 Integer crossInCenter = 1;
                 setCellInBoardToCross(FIRST_ROW, colInFirstRow);
                 setCellInBoardToCross(THIRD_ROW, colInThirdRow);
                 Seed seed = Seed.CROSS;
                 Boolean hasWon = testBoard.hasWon(seed, crossInCenter, crossInCenter);
+
                 assertTrue(hasWon);
             }
 
             @Test
             @DisplayName("Check if isDraw() returns false if moves are possible")
-            void testIsDrawReturnsFalseIfMovesArePossible() {
+            void testIfIsDrawReturnsFalseIfMovesArePossible() {
                 Boolean isDraw = testBoard.isDraw();
+
                 assertFalse(isDraw);
             }
 
             @Test
             @DisplayName("Check if isDraw() returns true if moves are impossible")
-            void testIsDrawReturnsTrueIfMovesAreImpossible() {
+            void testIfIsDrawReturnsTrueIfMovesAreImpossible() {
                 setAllCellsInBoardToCross();
                 Boolean isDraw = testBoard.isDraw();
                 assertTrue(isDraw);
