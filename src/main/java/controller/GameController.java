@@ -5,6 +5,8 @@ import model.GameState;
 import model.Seed;
 import model.Game;
 
+import java.util.ArrayList;
+
 import static view.UI.*;
 
 public class GameController {
@@ -27,7 +29,9 @@ public class GameController {
             printBoard(newGame.getBoard());
             String whichPlayersTurn = prepareWhichPlayersTurn(newGame.getCurrentPlayer());
             printText(whichPlayersTurn);
-            takeUserInput();
+            ArrayList rowAndColumn = takeUserInput();
+            System.out.println(rowAndColumn.get(0));
+            System.out.println(rowAndColumn.get(1));
         }
     }
 }
