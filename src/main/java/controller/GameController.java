@@ -64,6 +64,9 @@ public class GameController {
         String whichPlayersTurn = prepareWhichPlayersTurnText(this.getGame().getCurrentPlayer());
         printText(whichPlayersTurn);
         ArrayList rowAndColumn = takeUserInput();
+        while (rowAndColumn.size() != 2) {
+            rowAndColumn = takeUserInput();
+        }
         this.setRowAndColumn(rowAndColumn);
         newGame.updateGameState(this.getActualRow(), this.getActualColumn());
     }
@@ -80,11 +83,14 @@ public class GameController {
         Game game = this.getGame();
         String playAgainText = UI.preparePlayAgainText();
         UI.printText(playAgainText);
-        boolean userDecision = UI.takeUserCharInput();
-        if (userDecision) {
-            game.initGame();
-        } else {
-            this.togglePlay();
+        try {
+            boolean userDecision = UI.takeUserCharInput();
+            if (userDecision) {
+                game.initGame();
+            } else {
+                this.togglePlay();
+            }
+        } catch (IllegalArgumentException ignored) {
         }
     }
 
