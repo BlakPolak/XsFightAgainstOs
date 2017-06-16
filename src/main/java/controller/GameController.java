@@ -3,7 +3,6 @@ package controller;
 import model.GameState;
 import model.Seed;
 import model.Game;
-import view.UI;
 
 import java.util.ArrayList;
 
@@ -83,19 +82,19 @@ public class GameController {
     private void playerWon() {
         Game game = this.getGame();
         printBoard(game.getBoard());
-        String wonText = UI.prepareWhichPlayerWonText(game.getCurrentPlayer());
-        UI.printText(wonText);
+        String wonText = prepareWhichPlayerWonText(game.getCurrentPlayer());
+        printText(wonText);
         playAgain();
     }
 
     private void playAgain() {
         Game game = this.getGame();
-        String playAgainText = UI.preparePlayAgainText();
-        UI.printText(playAgainText);
+        String playAgainText = preparePlayAgainText();
+        printText(playAgainText);
         boolean isCorrectAnswer = false;
         while (!isCorrectAnswer) {
             try {
-                boolean userDecision = UI.takeUserCharInput();
+                boolean userDecision = takeUserCharInput();
                 isCorrectAnswer = true;
                 if (userDecision) {
                     game.initGame();
@@ -110,8 +109,8 @@ public class GameController {
     }
 
     private void draw() {
-        String drawText = UI.prepareDrawText();
-        UI.printText(drawText);
+        String drawText = prepareDrawText();
+        printText(drawText);
         playAgain();
     }
 
